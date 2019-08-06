@@ -1,7 +1,7 @@
 <!-- docs/_sidebar.md -->
 
 * [Home](/)
-* [android](/android/)
-    * [docs1-otherpage](/android/otherpage) 
-* [IOS](/IOS/)
+* [Android](/Android/)
+    * [docs1-otherpage](/Android/otherpage) 
+* [iOS](/iOS/)
     
