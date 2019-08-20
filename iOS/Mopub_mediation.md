@@ -19,7 +19,7 @@
   
    - Note. You should implement this class by your own cause it depends on layout for your own app.
    
-   - ```objective-c
+   ```objective-c
      //.h
      @interface RenderingViewTableViewCellForMopubNativeAd : UIView
      - (void)layoutSubviews;
@@ -159,7 +159,7 @@
          [imageLoader loadImageForURL:[NSURL URLWithString:iconImage] intoImageView:self.iconImageView];
      }
      @end
-     ```
+   ```
    
 ## 4. implement Mopub native ad
 
