@@ -34,16 +34,17 @@
 
 #### adData
 
-| Variable       | Type   | description |
-| -------------- | ------ | ----------- |
-| adType         | String |             |
-| uuid           | String |             |
-| title          | String |             |
-| text           | String |             |
-| advertiserName | String |             |
-| img_icon       | String | 82x82       |
-| img_icon_hd    | String | 300x300     |
-| img_main       | String | 1200x627    |
+| Variable       | Type   | description                            |
+| -------------- | ------ | -------------------------------------- |
+| adType         | String |                                        |
+| uuid           | String |                                        |
+| title          | String |                                        |
+| text           | String |                                        |
+| advertiserName | String |                                        |
+| img_icon       | String | 82x82                                  |
+| img_icon_hd    | String | 300x300                                |
+| img_main       | String | 1200x627                               |
+| imgs           | Map    | custom images {label,src,width,height} |
 
 1. ad fail delegates
 
