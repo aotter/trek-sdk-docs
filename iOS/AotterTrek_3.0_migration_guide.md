@@ -2,15 +2,15 @@
 
 ## 1. SDK name changed
 
-- SDK 1.x named AotterService
-- SDK 3.x named AotterTrek-iOS-SDK
+- SDK 1.x named `AotterService`
+- SDK 3.x named `AotterTrek-iOS-SDK`
 - import class change to `#import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>`
 
 ## 2. Class prefix changed
 
-- SDK 1.x : AT
+- SDK 1.x: `AT`
   - e.g. `ATAdNative`,` ATAdVideo`,` ATAdManager`, `ATTracker`
-- SDK 3.x : TK
+- SDK 3.x: `TK`
   - e.g. `TKAdNative`, `TKAdMaganer`, `TKTracker`
 
 ## 3. Video ad and Interactive ad removed, replaced with new SuprAd
