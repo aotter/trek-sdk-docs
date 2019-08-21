@@ -20,16 +20,16 @@
 1. pull&drag AotterTrek-iOS-SDK to your project.
 2. link AotterTrek-iOS-SDK if it's not auto-linked.
 3. adding linked frameworks and librarires to your target
-- SystemConfiguration
-- CoreMedia
-- WebKit
-- CoreTelephony
-- AdSupport
-- AVKit
-- AVFoundation
-- Foundation
-- UIKit
-- install Google-IMA-iOS-SDK, reference: https://developers.google.com/interactive-media-ads/docs/sdks/ios/
+	- SystemConfiguration
+	- CoreMedia
+	- WebKit
+	- CoreTelephony
+	- AdSupport
+	- AVKit
+	- AVFoundation
+	- Foundation
+	- UIKit
+4. install Google-IMA-iOS-SDK, reference: https://developers.google.com/interactive-media-ads/docs/sdks/ios/
 
 
 
