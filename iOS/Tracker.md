@@ -13,7 +13,7 @@ tracker物件須包含 `itemId`, `actionType`, `userObject`, `entityObject`, `lo
 
 ## Step 1. engage tracker item.
 
-1. 一個tracker item由 `entity`, `user`, `location`等部件組合，可以透過 `[ATTracker helper_]`系列來取得正確的format資料
+1. 一個tracker item由 `entity`, `user`, `location`等部件組合，可以透過 `[TKTracker helper_]`系列來取得正確的format資料
 2. 如果在初始化的時間點，上述三個object還無法產生或是不完整，可以先用nil代入，在Step 2的時候再進行更新即可。
 3. 若要紀錄timespan，請必填itemId
 
@@ -46,7 +46,7 @@ tracker物件須包含 `itemId`, `actionType`, `userObject`, `entityObject`, `lo
                                               meta:(NSDictionary *)meta;
 ```
 
-1. item type是純字串，可以自定義，不同的type會支援不同的meta格式，建議使用 `kATTTypeREAD_POST`, `kATTTypeVISIT_PLACE`, `kATTTypePLAY_GAME` etc..，定義在ATTracker.h中
+1. item type是純字串，可以自定義，不同的type會支援不同的meta格式，建議使用 `kTKTTypeREAD_POST`, `kTKTTypeVISIT_PLACE`, `kTKTTypePLAY_GAME` etc..，定義在TKTracker.h中
 2. 或是使用 `helper_entityObjectWithTypePOST`, `helper_entityObjectWithTypePLACE` 來取得正確的entity format資料
 
 ```objective-c
@@ -120,7 +120,7 @@ tracker物件須包含 `itemId`, `actionType`, `userObject`, `entityObject`, `lo
 2. tracker item不一定要每一個都step by step得engage-exit-send，可以累積複數個tracker item之後再用send item一次全部送出。端看app設計使用情境方便即可
 
 ```objective-c
--(void)ATTrackerSendItems;
+-(void)trackerSendItems;
 
 ```
 

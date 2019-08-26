@@ -1,18 +1,9 @@
 # AdManager setting
 
-1. prefetch ad (optional) 非必要，一般fetchAd時就有此機制，但是提供以下方法，可在fetchAd之前就先預載
+## Enable Ad cache
 
-```objective-c
-[[TKAdManager sharedAPI] prefetchAdForPlace:@"<myPlace>"];
-```
-
-1. prefetch ad for video (optional)
-
-```objective-c
-[[TKAdManager sharedAPI] prefetchAdVideoForPlace:@"<myPlace>"];
-```
-
-1. enable/disable cache (default is enabled)
+1. (default) when ad cache is eanbled, requesting ad will get failed immediately at the first time.
+2. If you disable ad cache, all ad request will take some time to get callback.
 
 ```objective-c
 //enable cache pool (by default)
@@ -22,7 +13,34 @@
 [[TKAdManager sharedAPI] disableAdCachePool];
 ```
 
-1. clear the ad cache (optional)
+
+
+## Ad pre-fetching
+
+1. Only availble when ad cache eanbled.
+2. Prefetch size depends on ad cach pool size, which can set by `enableAdCachePoolWithIndiviaulPoolSize`
+
+```objective-c
+//prefetch ad for TKAdNative
+[[TKAdManager sharedAPI] prefetchNativeAdForPlace:@"<myPlace>"];
+
+//or
+[[TKAdManager sharedAPI] prefetchNativeAdForPlace:@"<myPlace>" category:@"category"];
+```
+
+```objective-c
+//prefetch ad for Supr Ad
+[[TKAdManager sharedAPI] prefetchSuprAdForPlace:@"<myPlace>"];
+
+//or
+[[TKAdManager sharedAPI] prefetchSuprAdForPlace:@"<myPlace>" category:@"category"];
+```
+
+
+
+## Clear Ad cache
+
+1. Remove cached ad from storage if needed.
 
 ```objective-c
 [[TKAdManager sharedAPI] clearAllAdCache];
