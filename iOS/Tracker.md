@@ -4,131 +4,97 @@
 
 ## Guide
 
-tracker物件須包含 `itemId`, `actionType`, `userObject`, `entityObject`, `locationObject` 等物件。 傳送一個trakcer item需要經過下列步驟：
+One successful tracker event contains `trakcer itemId`, `actionType`, `userObject` , `entityObject` , `locationObject`.
 
-- Step 1. engage the tracker item.
-- Step 2. update the trakcer item (optional).
-- Step 3. exit the trakcer item (optional).
-- Step 4. send the trakcer items.
+- Tracker ItemId : the unique id of this tracker event.
 
-## Step 1. engage tracker item.
+- actionType : the action type of this event.
 
-1. 一個tracker item由 `entity`, `user`, `location`等部件組合，可以透過 `[TKTracker helper_]`系列來取得正確的format資料
-2. 如果在初始化的時間點，上述三個object還無法產生或是不完整，可以先用nil代入，在Step 2的時候再進行更新即可。
-3. 若要紀錄timespan，請必填itemId
+  - |      action type      |                  Description                  |
+    | :-------------------: | :-------------------------------------------: |
+    |   kTKTTypeREAD_POST   |       when user read a post or article        |
+    |  kTKTTypeVISIT_PLACE  |          when user visit some where           |
+    |   kTKTTypePLAY_GAME   | when user play a interactive game or activity |
+    | kTKTTypeLISTEN_MUSIC  |  when user plays a song through music player  |
+    |  kTKTTypeWATCH_VIDEO  |           when user watched a video           |
+    | kTKTTypeCALL_MERCHANT |                                               |
+    |   kTKTTypeBUY_ITEM    |                                               |
+
+- entity object : the object that represent the tracker event. Has different types
+
+|      entity type      | description |
+| :-------------------: | :---------: |
+|   kTKEntityTypePOST   |             |
+|  kTKEntityTypePLACE   |             |
+|   kTKEntityTypeGAME   |             |
+|  kTKEntityTypeMUSIC   |             |
+|  kTKEntityTypeVIDEO   |             |
+| kTKEntityTypeMERCHANT |             |
+|   kTKEntityTypeITEM   |             |
+
+- user object : the person/user invloved in this event.
+- location object : the position that event occurs.
+- There are steps to send a tracker event
+  - Step 1. create `entity object` / `user object` / `location object` 
+  - Step 2. engage above parts.
+  - Step 3. (optional) update `entity object` / `user object` / `location object` for sepcific items if it's nessasary in your app's life cycle.
+  - Step 4. (optional) exit the Tracker item if the event has clear end time.
+  - Step 5. send the trcaker item.
+
+
+
+## Step 1. Create Object of tracker event
 
 ```objective-c
--(void)trackerEngageItemWithItemId:(NSString *)itemId
-                                type:(NSString *)type
-                          userObject:(NSDictionary *)userObject
-                        entityObject:(NSDictionary *)entityObject
-                      locationObject:(NSDictionary *)locationObject;
+//create entity object with type 'POST'
+   NSDictionary *entityPostObject = [TKTracker helper_entityObjectWithTypePOST:@"myPostId" title:@"post title" url:@"http://agirls.aotter.net" tags:nil categories:@[@"news"] reference:nil publishedDate:nil imageUrl:nil author:@"F.D.KKK" meta:@{@"something": @"ffff"}];
+   
+//or create entityObject with type 'PLACE'
+NSDictionary *entityObject = [TKTracker helper_entityObjectWithTypePLACE:[NSString stringWithFormat:@"myPlaceEntityId"] title:@"Taipei" url:@"" tags:@[@"city",@"play",@"Taiwan"] categories:@[@"travel"] address:@"New Taipei City" lat:102.333 lng:63.333 meta:@{@"A": @"how do you turn this on?",@"address": @"new address shoud not be seen"}];
+
+//create user object (optional)
+NSDictionary *userObject = [TKTracker helper_userObjectWithEmail:@"<current_user_email>" phone:@"<current_user_phone>" fbId:@"<current_user_fbId>" gender:@"<F or M for current User>" birthday:[NSDate date] addtionalMeta:nil];
+
+//create location object (optional)
+double user_location_lat = 191.232323;
+double user_location_lng = 244.232323;
+NSDictionary *locationObject = [TKTracker helper_locationObjectWithLocationId:@"<your_location_id>" title:nil url:@"" categories:@[@"user_location"] address:nil lat:user_location_lat lng:user_location_lng additonalMeta:nil];
+
 ```
 
-1. 若沒有itemId，則可使用以下：會自動產生itemid，但就不能再修改/刪除/紀錄timespan此tracker item
+## Step 2. Engage trakcer event with these parts
 
 ```objective-c
--(void)trackerEngageItemWithType:(NSString *)type
-                          userObject:(NSDictionary *)userObject
-                        entityObject:(NSDictionary *)entityObject
-                      locationObject:(NSDictionary *)locationObject;
+//engage trakcer item with POST type
+[[TKTracker sharedAPI] trackerEngageItemWithItemId:@"myPostId" type:kTKTTypeREAD_POST userObject:userObject entityObject:entityObject locationObject:locationObject];
 ```
 
-### Step 1-1 entity item
+## Step3. (optional) Update the tracker items' specific part if needed
 
 ```objective-c
-+(NSDictionary *)helper_customEntityObjectWithType:(NSString *)type
-                                          entityId:(NSString *)entityId
-                                             title:(NSString *)title
-                                               url:(NSString *)url
-                                              tags:(NSArray *)tags
-                                        categories:(NSArray *)categories
-                                              meta:(NSDictionary *)meta;
+[[TKTracker sharedAPI] trackerUpdateItem:@"myPostId" withEntityObject:@{@"foo":@"bar"}];
+[[TKTracker sharedAPI] trackerUpdateItem:@"myPostId" withUserObject:@{@"foo":@"bar"}];
+[[TKTracker sharedAPI] trackerUpdateItem:@"myPostId" withLocationObject:@{@"foo":@"bar"}];
 ```
 
-1. item type是純字串，可以自定義，不同的type會支援不同的meta格式，建議使用 `kTKTTypeREAD_POST`, `kTKTTypeVISIT_PLACE`, `kTKTTypePLAY_GAME` etc..，定義在TKTracker.h中
-2. 或是使用 `helper_entityObjectWithTypePOST`, `helper_entityObjectWithTypePLACE` 來取得正確的entity format資料
+## Step 4. (optional) Exit tracker item if the tracker event has clear end time.
 
 ```objective-c
-+(NSDictionary *)helper_entityObjectWithTypePOST:(NSString *)entityId
-                                           title:(NSString *)title
-                                             url:(NSString *)url
-                                            tags:(NSArray *)tags
-                                      categories:(NSArray *)categories
-                                       reference:(NSString *)reference
-                                   publishedDate:(NSDate *)publishedDate
-                                        imageUrl:(NSString *)imageUrl
-                                          author:(NSString *)author;
-
-+(NSDictionary *)helper_entityObjectWithTypePLACE:(NSString *)entityId
-                                           title:(NSString *)title
-                                             url:(NSString *)url
-                                            tags:(NSArray *)tags
-                                       categories:(NSArray *)categories
-                                          address:(NSString *)address
-                                              lat:(double)lat
-                                              lng:(double)lng;
+//when user leave the post page, which means the user is finish reading the post
+[[TKTracker sharedAPI] trackerExitItem:@"myPostId"];
 ```
 
-### Step 1-2. User Object
-
-1. meta資料可以自定義，須為JSON格式的NSDictionary
+## Step 5. Send tracker items.
 
 ```objective-c
-+(NSDictionary *)helper_userObjectWithEmail:(NSString *)email
-                                     phone:(NSString *)phone
-                                      fbId:(NSString *)fbId
-                                    gender:(NSString *)gender
-                                  birthday:(NSDateComponents *)birthday
-                             addtionalMeta:(NSDictionary *)meta;
-
-### Step 1-3 Location Object ###
-1. meta資料可以自定義，須為JSON格式的NSDictionary
-+(NSDictionary *)helper_locationObjectWithType:(ATTrackerType)type
-                                    locationId:(NSString *)locationId
-                                         title:(NSString *)title
-                                           url:(NSString *)url
-                                    categories:(NSArray *)categories
-                                       address:(NSString *)address
-                                           lat:(double)lat
-                                           lng:(double)lng
-                                 additonalMeta:(NSDictionary *)meta;
-```
-
-## Step 2. update tracker item (optional)
-
-1. 對特定的tracker item進行 `type`, `userObject`, `locationObject`, `entityObject`進行更新
-
-```objective-c
--(void)trackerUpdateItem:(NSString *)itemId withType:(NSString *)type;
--(void)trackerUpdateItem:(NSString *)itemId withUserObject:(NSDictionary *)userObject;
--(void)trackerUpdateItem:(NSString *)itemId withEntityObject:(NSDictionary *)entityObject;
--(void)trackerUpdateItem:(NSString *)itemId withLocationObject:(NSDictionary *)locationObject;
-```
-
-## Step 3. exit the trakcer item (optional)
-
-1. 對特定的tracker item標記exit，若是此筆資料有紀錄tracker item id，此舉會產生timespan資料。
-
-```objective-c
--(void)trackerExitItem:(NSString *)itemId;
-```
-
-## Step 4. send the tracker item
-
-1. 將所有tracker item送出
-2. tracker item不一定要每一個都step by step得engage-exit-send，可以累積複數個tracker item之後再用send item一次全部送出。端看app設計使用情境方便即可
-
-```objective-c
--(void)trackerSendItems;
-
+[[TKTracker sharedAPI] trackerSendItems];        
 ```
 
 # Example
 
 ```objective-c
 -(void)engageItemAndSend{
-    NSDictionary *entityObject = [TKTracker helper_entityObjectWithTypePOST:@"myPostId" title:@"文章標題" url:@"http://agirls.aotter.net" tags:nil categories:@[@"news"] reference:nil publishedDate:nil imageUrl:nil author:nil];
+    NSDictionary *entityObject = [TKTracker helper_entityObjectWithTypePOST:@"myPostId" title:@"post title" url:@"http://agirls.aotter.net" tags:nil categories:@[@"news"] reference:nil publishedDate:nil imageUrl:nil author:nil];
     NSDictionary *userObject = [TKTracker helper_userObjectWithEmail:@"my@email.net" phone:@"0922333444" fbId:@"" gender:@"M" birthday:@"1999/05/02" addtionalMeta:nil];
     [[TKTracker sharedAPI] trackerEngageItemWithItemId:@"myPostId" type:kTKTTypeREAD_POST userObject:userObject entityObject:entityObject locationObject:nil];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
