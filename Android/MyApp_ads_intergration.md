@@ -91,4 +91,4 @@ tkAdN.setAdTKMyAppListener(true, new TKAdListener() {
   }
 });
 ```
-[More detail](Android/Native_Ad)
+[More detail](Android/Native_Ad?id=native-ad)
