@@ -34,7 +34,7 @@ check the MyApp service is initialed.
 
 ## 3. usage 
 
-Native ad `TKMyAppAdNative` usage is same as `TKAdNative`. See [guide]((/iOS/Native_Ad)) for more information
+Native ad `TKMyAppAdNative` usage is same as `TKAdNative`. See [guide](iOS/Native_Ad) for more information
 
 ```objective-c
   self.nativeAd = [[TKMyAppAdNative alloc] initWithPlace:@"myPlace" category:@"testCategory"];
