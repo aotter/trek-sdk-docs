@@ -2,10 +2,15 @@
 
 * [Home](/)
 * [Android](/Android/)
-    * [docs1-otherpage](/Android/otherpage) 
+    * [Install SDK](/Android/Install_SDK)
+	* [User Setting](/Android/User_Setting)
+	* [Native Ad](/Android/Native_Ad)
+	* [Supr Ad](/Android/Supr_Ad)
+	* [Mopub Mediation Guide](/Android/Mopub_mediation)
+	* [MyApp Ads Intergration](/Android/MyApp_ads_intergration)
+	* [Tracker](/Android/Tracker)
 * [iOS](/iOS/)
 	* [Install SDK](/iOS/Install_SDK)
-	* [Tracker](/iOS/Tracker)
 	* [User Setting](/iOS/User_Setting)
 	* [Native Ad](/iOS/Native_Ad)
 	* [Supr Ad](/iOS/Supr_Ad)
@@ -13,4 +18,5 @@
 	* [Mopub Mediation Guide](/iOS/Mopub_mediation)
 	* [AotterTrek 3.x Migration Guide](/iOS/AotterTrek_3.0_migration_guide)
 	* [MyApp Ads Intergration](/iOS/MyApp_ads_intergration)
+	* [Tracker](/iOS/Tracker)
 
