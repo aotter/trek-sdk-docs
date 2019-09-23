@@ -1,6 +1,6 @@
 # AdManager setting
 
-## Enable Ad cache
+## Enable Ad cache (removed after SDK 3.2~)
 
 1. (default) when ad cache is eanbled, requesting ad will get failed immediately at the first time.
 2. If you disable ad cache, all ad request will take some time to get callback.
@@ -12,6 +12,8 @@
 //disable cache pool
 [[TKAdManager sharedAPI] disableAdCachePool];
 ```
+
+3. (NEW) SDK after 3.2 version, cache will always enabled and the cache system have been improved.
 
 
 

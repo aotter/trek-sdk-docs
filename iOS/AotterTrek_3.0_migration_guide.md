@@ -43,5 +43,6 @@ since Xcode 8 stop supporting third-party plug-ins, the [XcodeColors](https://gi
 ## 5. Ad cache setting changed.
 
 - 1.x : `ATsetIndividualAdPoolSize:`
-- 3.x : `disableAdCachePool` and `enableAdCachePoolWithIndiviaulPoolSize:`
+- 3.0, 3.1: `disableAdCachePool` and `enableAdCachePoolWithIndiviaulPoolSize:`
+- 3.2~ : removed cache enable/disable setting, the cache will always on and cache system has been improved.
 
