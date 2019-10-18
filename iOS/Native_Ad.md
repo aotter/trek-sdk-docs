@@ -39,6 +39,7 @@
 | adType         | String |                                        |
 | uuid           | String |                                        |
 | title          | String |                                        |
+| sponser          | String |                                        |
 | text           | String |                                        |
 | advertiserName | String |                                        |
 | img_icon       | String | 82x82                                  |
