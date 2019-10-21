@@ -26,7 +26,7 @@ Example app-level build.gradle (excerpt)
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     <b>implementation <span style="color:#9ccc65">'com.google.android.gms:play-services-ads:18.1.1'</span>
-    implementation <span style="color:#9ccc65">'com.aotter.net:trek-sdk:3.0.0'</span></b>
+    implementation <span style="color:#9ccc65">'com.aotter.net:trek-sdk:3.1.0_rc2'</span></b>
 }
 </pre>
 
