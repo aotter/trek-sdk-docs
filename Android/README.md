@@ -1,4 +1,6 @@
 # Android
+- 2019/11/12 release `3.1.4`
+    - update Network
 - 2019/10/21 release `3.1.1`
     - Ad cache logic refactoring
 
