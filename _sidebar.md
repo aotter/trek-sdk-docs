@@ -20,3 +20,6 @@
 	* [MyApp Ads Intergration](/iOS/MyApp_ads_intergration)
 	* [Tracker](/iOS/Tracker)
 
+* [Web](/Web/)
+	* [Install SDK](/Web/Install_SDK)
+	* [Video Ad](/Web/Video)
