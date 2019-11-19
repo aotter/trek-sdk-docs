@@ -1,6 +1,6 @@
 # Installation
 
-Put the following codes in your HTML head.
+Put the following codes in your HTML body bottom.
 
 ```html
 <!-- start: trek sdk -->
