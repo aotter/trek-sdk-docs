@@ -1,8 +1,8 @@
-## TkAdn
+# TkAdn
 
 > You can track `Conversion Rate` by using AotterTrek JS SDK, It's can track behavior while user browsing on Ad's target page.
 
-### How it works?
+## How it works?
 
 1. While user click on an Ad, open new target page, the url will attached an `_tkadbc` track parameter, ex. `https://example.com/page/camp2017/?_tkadbc=fd91c867eff1b33bf5936d91058994...`
 2. If the target page already include AotterTrek JS SDK, SDK will get parameter `_tkadbc` from url, and temporary store it in Cookie by `one` day.

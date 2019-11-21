@@ -10,7 +10,7 @@ How it works?
 | `<img data-trek="[PROP]" />`    	| `img.src = [PROP]`           	|
 | `<a data-trek="[PROP]"></a>`    	| `a.href = [PROP]`            	|
 
-## Usage
+#### Usage
 
 > html example:
 

@@ -1,12 +1,12 @@
 # Video Ad
 
-## 1. Put the code in where what you want.
+##### 1. Put the code in where what you want.
 ```html
   <div data-trek-ad="video" data-place="placement_name"></div>
 ```
 
 
-## 2. Execute this js code.
+##### 2. Execute this js code.
 ```html
 <script>
 AotterTrek('videoAd', {
@@ -42,4 +42,4 @@ AotterTrek(function(API) {
 ```
 
 
-## 3. Your original `<div data-trek-ad="video" ...` will transformed to video ad.
+##### 3. Your original `<div data-trek-ad="video" ...` will transformed to video ad.
