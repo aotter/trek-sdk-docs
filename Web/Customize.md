@@ -58,7 +58,7 @@ How it works?
 
 ## How to make sure ad will fully loaded then show ad.
 
-> If success loaded ad, SDK will add `data-trek-id` attribute on your parent element ('selector selected element') after execute `AotterTrek.render('#native-ad')`
+> If success loaded ad, SDK will add `data-trek-id` attribute on your parent element ('selector selected element') after execute `SDK render #native-ad`
 
 #### Examples
 
