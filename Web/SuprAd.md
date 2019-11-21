@@ -1,15 +1,16 @@
-# Video AD
+# Supr Ad
 
 ## 1. Put the code in where what you want.
 ```html
-  <div data-trek-ad="video" data-place="placement_name"></div>
+  <div data-trek-ad="suprad" data-place="placement_name"></div>
 ```
 
 
 ## 2. Execute this js code.
-```js
-AotterTrek('videoAd', {
-    selector: '[data-trek-ad="video"]', // or passing element into it.
+```html
+<script>
+AotterTrek('suprAd', {
+    selector: '[data-trek-ad="suprad"]', // or passing element into it.
     onAdLoad: () => {
         // When ad load success then do something.
     },
@@ -17,11 +18,13 @@ AotterTrek('videoAd', {
         // When ad load fail then do something.
     }
 })
+</script>
 ```
 
 or another handy way to listen ad status callback:
 
-```js
+```html
+<script>
 AotterTrek(function(API) {
     API.Event.on('onAdLoad', function(data) {
         if (data.place === 'placement_name') {
@@ -35,7 +38,8 @@ AotterTrek(function(API) {
         }
     });
 });
+</script>
 ```
 
 
-## 3. Your original `<div data-trek-ad="video" ...` will show up video ad.
+## 3. Your original `<div data-trek-ad="suprad" ...` will transformed to SuprAd.

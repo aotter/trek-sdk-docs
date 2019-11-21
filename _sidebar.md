@@ -22,4 +22,10 @@
 
 * [Web](/Web/)
 	* [Install SDK](/Web/Install_SDK)
-	* [Video Ad](/Web/Video)
+	<!-- * [API](/Web/API) -->
+	* [Video Ad](/Web/VideoAd)
+	* [Native Ad](/Web/NativeAd)
+		* [Customize](/Web/Customize)
+	* [Supr Ad](/Web/SuprAd)
+	<!-- * [TkAdn](/Web/TkAdn) -->
+	<!-- * [Tracker](/Web/Tracker) -->
