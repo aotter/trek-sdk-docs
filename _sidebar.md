@@ -23,8 +23,8 @@
 * [Web](/Web/)
 	* [Install SDK](/Web/Install_SDK)
 	* [APIs](/Web/APIs)
-	* [Native Ad](/Web/NativeAd)
-		* [Customize](/Web/Customize)
+	<!-- * [Native Ad](/Web/NativeAd) -->
+		<!-- * [Customize](/Web/Customize) -->
 	* [Video Ad](/Web/VideoAd)
 	* [Supr Ad](/Web/SuprAd)
 	* [TkAdn](/Web/TkAdn)
