@@ -1,6 +1,6 @@
 # Installation
 
-Put the following codes in your HTML body bottom.
+Place the following `<script>` near the end of your pages, right before the closing </body> tag, to enable them. 
 
 ```html
 <!-- start: trek sdk -->

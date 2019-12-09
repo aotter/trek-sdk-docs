@@ -21,7 +21,8 @@ AotterTrek('init', 'CLIENT_ID');
 
 > Send http request to get Ad response, inject response data to specific element.
 
-> ref: [NativeAd](/Web/NativeAd),[VideoAd](/Web/Video),[SuprAd](/Web/SuprAd)
+> ref: [VideoAd](/Web/Video),[SuprAd](/Web/SuprAd)
+<!-- > ref: [NativeAd](/Web/NativeAd),[VideoAd](/Web/Video),[SuprAd](/Web/SuprAd) -->
 
 #### Arguments
 | order | name    | type     | note                                         |

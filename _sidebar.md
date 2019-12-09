@@ -21,6 +21,7 @@
 	* [Tracker](/iOS/Tracker)
 
 * [Web](/Web/)
+	* [Getting Started](/Web/GettingStarted)
 	* [Install SDK](/Web/Install_SDK)
 	* [APIs](/Web/APIs)
 	* [Video Ad](/Web/Video)
