@@ -9,6 +9,7 @@
 	* [Mopub Mediation Guide](/Android/Mopub_mediation)
 	* [MyApp Ads Intergration](/Android/MyApp_ads_intergration)
 	* [Tracker](/Android/Tracker)
+	* [Proguard](/Android/Proguard)
 * [iOS](/iOS/)
 	* [Install SDK](/iOS/Install_SDK)
 	* [User Setting](/iOS/User_Setting)
