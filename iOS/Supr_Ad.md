@@ -1,28 +1,26 @@
 # Supr Ad
 
-1. create SuprAd object
-
-2. ```objective-c
+## 1. create SuprAd object
+   ```objective-c
    self.suprAd = [[TKAdSuprAd alloc] initWithPlace:@"somewhere" category:@""];
    self.suprAd.delegate = self;
-   
+
    //register view controller for presenting
    [self.suprAd registerPresentingViewController:self];
    ```
 
 
 
-2. fetch ad
-
-3. ```objective-c
+## 2. fetch ad
+   ```objective-c
    [self.suprAd fetchAd];
    ```
 
 
 
-3. received Ad datat with prefered ad size, register for adView and TKMediaView
+## 3. received Ad datat with prefered ad size, register for adView and TKMediaView
 
-4. ```objective-c
+   ```objective-c
    -(void)TKAdSuprAd:(TKAdSuprAd *)suprAd didReceivedAdWithAdData:(NSDictionary *)adData preferedMediaViewSize:(CGSize)size{
      //TKMediaView: the view for showing SuprAd's Media
      [self.suprAd registerTKMediaView:self.adCell.contentView];
@@ -38,7 +36,7 @@
      NSDictionary *images = adData[kTKAdImgsKey];
    }
    ```
-#### adData
+### adData
 
 | Variable       | Type   | description                            |
 | -------------- | ------ | -------------------------------------- |
@@ -54,7 +52,7 @@
 
  
 
-4. Ad load completed, the ad is ready to show on screen
+## 4. Ad load completed, the ad is ready to show on screen
 
   ```objective-c
   -(void)TKAdSuprAdCompleted:(TKAdSuprAd *)suprAd{
@@ -63,7 +61,7 @@
   }
   ```
 
-1. Any error callback
+## 5. Any error callback
 
    ```objective-c
    -(void)TKAdSuprAd:(TKAdSuprAd *)suprAd adError:(TKAdError *)error{
@@ -71,9 +69,21 @@
    }
    ```
 
-   
-   
-6. Destroy ad 
+
+## 6. Notify SuprAd that your ad view is scrolling.
+### if you render your Supr_ad in any kind of ScrollView, such as UIScrollView/UITableView/UICollectionView, please notify the supr_ad that  the ad is scrolling vertically or horizentally.
+
+```objective-c
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+if(self.suprAd){
+    [self.suprAd notifyAdScrolled];
+	}
+}
+```
+
+
+
+## 7. Destroy ad 
 
    ```objective-c
    -(void)viewDidDisappear:(BOOL)animated{
