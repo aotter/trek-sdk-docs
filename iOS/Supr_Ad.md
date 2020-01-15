@@ -69,21 +69,7 @@
    }
    ```
 
-
-## 6. Notify SuprAd that your ad view is scrolling.
-### if you render your Supr_ad in any kind of ScrollView, such as UIScrollView/UITableView/UICollectionView, please notify the supr_ad that  the ad is scrolling vertically or horizentally.
-
-```objective-c
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-if(self.suprAd){
-    [self.suprAd notifyAdScrolled];
-	}
-}
-```
-
-
-
-## 7. Destroy ad 
+## 6. Destroy ad 
 
    ```objective-c
    -(void)viewDidDisappear:(BOOL)animated{
