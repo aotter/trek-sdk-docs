@@ -15,7 +15,7 @@ Be aware to replace `YOUR_CLIENT_ID` to your client id.
     js = d.createElement(s); js.id = n;
     w[n] = w[n] || function() { (w[n].q = w[n].q || []).push(arguments) }; w[n].l = 1 * new Date();
     js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
-  })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.1.9/sdk.js', 'AotterTrek');
+  })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.5/sdk.js', 'AotterTrek');
 
   AotterTrek('init', 'YOUR_CLIENT_ID');
 
@@ -55,7 +55,7 @@ Place Ad in where what you want.
 Aotter trek web sdk will parse `data-trek-ad="suprad"` to Ad.
 
 #### Result:
-![](/suprad.png)
+![](/imgs/suprad.png)
 
 ### Full example
 
@@ -71,7 +71,7 @@ Aotter trek web sdk will parse `data-trek-ad="suprad"` to Ad.
             js = d.createElement(s); js.id = n;
             w[n] = w[n] || function() { (w[n].q = w[n].q || []).push(arguments) }; w[n].l = 1 * new Date();
             js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
-        })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.1.9/sdk.js', 'AotterTrek');
+        })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.5/sdk.js', 'AotterTrek');
 
         AotterTrek('init', 'YOUR_CLIENT_ID');
     </script>
