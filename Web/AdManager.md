@@ -2,7 +2,7 @@
 
 
 ### How to use AdManager publish AotterTrek Ads?
-> This section will guide you through which how to publish AotterTrek Ads use AdManager, steps divides two step, first is create `Ad Unit` and other is `Order`.
+> This section will guide you through which how to publish AotterTrek Ads use AdManager, two steps you need to do, first is create `Ad Unit` and other is `Order`.
 
 - [Create Ad Unit](/Web/AdManager?id=create-ad-unit)
 - [Create Order](/Web/AdManager?id=create-order)
