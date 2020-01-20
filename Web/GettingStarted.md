@@ -4,7 +4,9 @@
 ### 1. Installation
 
 Place the following `<script>` near the end of your pages, right before the closing </body> tag.
-Be aware to replace `YOUR_CLIENT_ID` to your client id or use our test id `yEFcFoJaruNorh5RqtuR`.
+Be aware to replace `YOUR_CLIENT_ID` to your client id or use test id for test purpose.
+
+> Test client id: `yEFcFoJaruNorh5RqtuR`
 
 ```html
 <!-- start: trek sdk -->
