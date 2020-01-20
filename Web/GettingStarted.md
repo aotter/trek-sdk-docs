@@ -3,8 +3,8 @@
 
 ### 1. Installation
 
-Place the following `<script>` near the end of your pages, right before the closing </body> tag, to enable.
-Be aware to replace `YOUR_CLIENT_ID` to your client id.
+Place the following `<script>` near the end of your pages, right before the closing </body> tag.
+Be aware to replace `YOUR_CLIENT_ID` to your client id or use our test id `yEFcFoJaruNorh5RqtuR`.
 
 ```html
 <!-- start: trek sdk -->
@@ -17,7 +17,8 @@ Be aware to replace `YOUR_CLIENT_ID` to your client id.
     js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
   })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.5/sdk.js', 'AotterTrek');
 
-  AotterTrek('init', 'YOUR_CLIENT_ID');
+  // Remember to replace your client id.
+  AotterTrek('init', 'yEFcFoJaruNorh5RqtuR');
 
 </script>
 <!-- end: trek sdk -->
@@ -73,7 +74,8 @@ Aotter trek web sdk will parse `data-trek-ad="suprad"` to Ad.
             js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
         })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.5/sdk.js', 'AotterTrek');
 
-        AotterTrek('init', 'YOUR_CLIENT_ID');
+        // Remember to replace your client id.
+        AotterTrek('init', 'yEFcFoJaruNorh5RqtuR');
     </script>
     <!-- end: trek sdk -->
 
@@ -90,6 +92,5 @@ Aotter trek web sdk will parse `data-trek-ad="suprad"` to Ad.
     </script>
 
 </body>
-
 
 ```
