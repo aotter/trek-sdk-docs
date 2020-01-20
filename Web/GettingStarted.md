@@ -17,7 +17,7 @@ Be aware to replace `YOUR_CLIENT_ID` to your client id or use our test id `yEFcF
     js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
   })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.5/sdk.js', 'AotterTrek');
 
-  // Remember to replace your client id.
+  // Notice: replace your own client id.
   AotterTrek('init', 'yEFcFoJaruNorh5RqtuR');
 
 </script>
@@ -74,7 +74,7 @@ Aotter trek web sdk will parse `data-trek-ad="suprad"` to Ad.
             js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
         })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.5/sdk.js', 'AotterTrek');
 
-        // Remember to replace your client id.
+        // Notice: replace your own client id.
         AotterTrek('init', 'yEFcFoJaruNorh5RqtuR');
     </script>
     <!-- end: trek sdk -->
