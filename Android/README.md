@@ -1,4 +1,6 @@
 # Android
+- 2020/01/13 release `3.1.8`
+    - add scroll SuprAd support 
 - 2020/01/13 release `3.1.7`
     - update SuprAd Type 
     - add Proguard
