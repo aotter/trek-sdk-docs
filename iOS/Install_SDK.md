@@ -47,6 +47,13 @@
   //optional
   [[AotterTrek sharedAPI] enableLoggerWithLevel:TKLoggerLevelDetail];
 
+  
+  //Optional, if you are implementing SuprAd and wish the ad video sound would not interrupt your users background music. 
+  //If your app combines various audio playing conditions, and you are familiar to thes functions, it's ok to set any category that you want.
+   [[AVAudioSession sharedInstance]setCategory:AVAudioSessionCategoryAmbient error:nil];
+  
+  
+  
   return YES;
 }
 ```

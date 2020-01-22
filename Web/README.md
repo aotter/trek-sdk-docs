@@ -1,4 +1,8 @@
 # Ｗeb
+- 2020/1/20 release `3.2.5`
+    - Upgrade post-robot to 10.0.29.
+    - Add suprad popup support by web component.
+    - Remove whatwg-fetch polyfill from project.
 - 2019/11/19 release `3.1.9`
     - Fix `adOnFail` possible not working property.
     - Add `CatRun(SuprAd)` support.
