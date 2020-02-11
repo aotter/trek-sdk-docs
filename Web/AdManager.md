@@ -7,6 +7,11 @@
 - [Create Ad Unit](/Web/AdManager?id=create-ad-unit)
 - [Create Order](/Web/AdManager?id=create-order)
 
+
+### Before Started
+> #### We're highly recommend that use `320x180` or `480x270` for ad unit sizes, if you want to use custom setting, please follow `16:9` aspect ratio. Otherwise, it might be worked but not good for displaying Supr Ad.
+
+
 ### Create Ad Unit
 
 1. In AdManager dashboard click `Inventory` > `Ad units` from sidebar.
@@ -81,6 +86,38 @@
 > ref: [Getting Started](/Web/GettingStarted)
 
 ![](/imgs/admanager/order-10.png)
+
+##### Example code:
+```html
+    <div data-trek-ad="suprad" data-place="placement_name"></div>
+
+    <!-- start: trek sdk -->
+    <script>
+        (function(w, d, s, src, n) {
+            var js, ajs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(n)) return;
+            js = d.createElement(s); js.id = n;
+            w[n] = w[n] || function() { (w[n].q = w[n].q || []).push(arguments) }; w[n].l = 1 * new Date();
+            js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
+        })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.5/sdk.js', 'AotterTrek');
+
+        // Notice: replace your own client id.
+        AotterTrek('init', 'yEFcFoJaruNorh5RqtuR');
+
+        AotterTrek('suprAd', {
+            selector: '[data-trek-ad="suprad"]', // or passing element into it.
+            onAdLoad: () => {
+                // When ad load success then do something.
+            },
+            onAdFail: () => {
+                // When ad load fail then do something.
+            }
+        })
+    </script>
+    <!-- end: trek sdk -->
+
+
+```
 
 10. If you want to see that how ad look likes, you can back to `Creatives` list, and edit `Creative`, choose `Preview` tab to preview ad.
 
