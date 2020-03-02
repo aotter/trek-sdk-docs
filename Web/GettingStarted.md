@@ -6,7 +6,8 @@
 Place the following `<script>` near the end of your pages, right before the closing </body> tag.
 Be aware to replace `CLIENT ID` or use test id for test purpose.
 
-> Test client id: `yEFcFoJaruNorh5RqtuR`
+> [!Tip]
+> Test client id: `yEFcFoJaruNorh5RqtuR` only for test purpose.
 
 ```html
 <!-- start: trek sdk -->
@@ -17,7 +18,7 @@ Be aware to replace `CLIENT ID` or use test id for test purpose.
     js = d.createElement(s); js.id = n;
     w[n] = w[n] || function() { (w[n].q = w[n].q || []).push(arguments) }; w[n].l = 1 * new Date();
     js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
-  })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.5/sdk.js', 'AotterTrek');
+  })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.7/sdk.js', 'AotterTrek');
 
   // Notice: replace your own client id.
   AotterTrek('init', 'yEFcFoJaruNorh5RqtuR');
@@ -54,6 +55,9 @@ Place Ad in where what you want.
   <div data-trek-ad="suprad" data-place="placement_name"></div>
 ```
 
+> [!Warning]
+> Change `placement_name` value to your own, DO NOT USE Chinese character, use English instead.
+
 ### 4. Done!
 Aotter trek web sdk will parse `data-trek-ad="suprad"` to Ad.
 
@@ -74,7 +78,7 @@ Aotter trek web sdk will parse `data-trek-ad="suprad"` to Ad.
             js = d.createElement(s); js.id = n;
             w[n] = w[n] || function() { (w[n].q = w[n].q || []).push(arguments) }; w[n].l = 1 * new Date();
             js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
-        })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.5/sdk.js', 'AotterTrek');
+        })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.7/sdk.js', 'AotterTrek');
 
         // Notice: replace your own client id.
         AotterTrek('init', 'yEFcFoJaruNorh5RqtuR');

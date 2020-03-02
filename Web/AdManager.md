@@ -10,8 +10,12 @@
 
 
 ### Before Started
-> #### We're highly recommend that use `320x180` or `480x270` for ad unit sizes, if you want to use custom setting, please follow `16:9` aspect ratio. Otherwise, it might be worked but not good for displaying Supr Ad.
 
+> [!Danger]
+> We're highly recommend that use **`320x180 (Mobile)`** or **`480x270 (Tablet or Desktop)`** for ad unit size, if you want to use custom setting, please follow `16:9` aspect ratio. Otherwise, it might be worked but not good for displaying Supr Ad.
+
+> [!Danger]
+> When you choose a size for your ad, you need to choose same size in next follow instructions.
 
 ### Create Ad Unit
 
@@ -22,6 +26,9 @@
 
 3. Will appear `New ad unit` section.
 4. Fill up ad unit information, `name` and `size` are required, choose a size from dropdown, if there are hasn't your wanted option, you can typing in custom size in that `size` field.
+
+> [!Tip]
+> **`320x180 (Mobile)`** or **`480x270 (Tablet or Desktop)`**
 
 ![](/imgs/admanager/unit-2.png)
 
@@ -89,6 +96,12 @@
 ![](/imgs/admanager/order-10.png)
 
 ##### Example code:
+> [!Warning]
+> Change `placement_name` and `client id` values to your own.
+
+> [!Warning]
+> `placement_name` DO NOT USE Chinese character, use English instead.
+
 ```html
     <div data-trek-ad="suprad" data-place="placement_name"></div>
 
@@ -100,7 +113,7 @@
             js = d.createElement(s); js.id = n;
             w[n] = w[n] || function() { (w[n].q = w[n].q || []).push(arguments) }; w[n].l = 1 * new Date();
             js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
-        })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.5/sdk.js', 'AotterTrek');
+        })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.7/sdk.js', 'AotterTrek');
 
         // Notice: replace your own client id.
         AotterTrek('init', 'yEFcFoJaruNorh5RqtuR');

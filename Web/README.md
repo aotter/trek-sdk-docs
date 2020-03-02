@@ -1,4 +1,7 @@
 # Ｗeb
+- 2020/2/20 release `3.2.7`
+    - Add trigger onAdLoad() with more ad information.
+    - Fix trek-popup will cover entire page. It leads iOS device can't select
 - 2020/1/20 release `3.2.5`
     - Upgrade post-robot to 10.0.29.
     - Add suprad popup support by web component.
