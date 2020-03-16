@@ -1,6 +1,11 @@
 # Getting Started
 ---
 
+### Before Started
+
+> [!Danger]
+> Currently, SuprAd only support for mobile and tablet.
+
 ### 1. Installation
 
 Place the following `<script>` near the end of your pages, right before the closing </body> tag.

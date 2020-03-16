@@ -1,5 +1,14 @@
 # Supr Ad
 
+---
+
+### Before Started
+
+> [!Danger]
+> Currently, SuprAd only support for mobile and tablet.
+
+---
+
 ##### 1. Install SDK first.
 
 ref: [Installation](/Web/Install_SDK)

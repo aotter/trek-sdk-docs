@@ -12,6 +12,9 @@
 ### Before Started
 
 > [!Danger]
+> Currently, SuprAd only support for mobile and tablet.
+
+> [!Danger]
 > We're highly recommend that use **`320x180 (Mobile)`** or **`480x270 (Tablet or Desktop)`** for ad unit size, if you want to use custom setting, please follow `16:9` aspect ratio. Otherwise, it might be worked but not good for displaying Supr Ad.
 
 > [!Danger]
