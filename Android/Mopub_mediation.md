@@ -25,7 +25,7 @@ Please set up AotterTrek Native Ads as follows:
 
 ### 2. Add the custom event files to your project
 
-Add the folder ‘nativeads’ into com.mopub under your app’s src/ directory and copy the adapters from [檔案下載](https://trek.aotter.net/publisher/show/sdk?platform=ANDROID#home) that you want to include into the folder.
+Add the folder ‘nativeads’ into com.mopub under your app’s src/ directory and copy the adapters from [檔案下載](https://github.com/aotter/AotterTrek-Android-SDK/releases/download/3.1.8/TrekNative_mediation_v3.0.0.zip) that you want to include into the folder.
 
 ### 3. Install AotterTrek SDK
 
