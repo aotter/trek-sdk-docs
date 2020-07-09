@@ -23,7 +23,7 @@ Be aware to replace `CLIENT ID` or use test id for test purpose.
     js = d.createElement(s); js.id = n;
     w[n] = w[n] || function() { (w[n].q = w[n].q || []).push(arguments) }; w[n].l = 1 * new Date();
     js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
-  })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.7/sdk.js', 'AotterTrek');
+  })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.9/sdk.js', 'AotterTrek');
 
   // Notice: replace your own client id.
   AotterTrek('init', 'yEFcFoJaruNorh5RqtuR');
@@ -83,7 +83,7 @@ Aotter trek web sdk will parse `data-trek-ad="suprad"` to Ad.
             js = d.createElement(s); js.id = n;
             w[n] = w[n] || function() { (w[n].q = w[n].q || []).push(arguments) }; w[n].l = 1 * new Date();
             js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
-        })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.7/sdk.js', 'AotterTrek');
+        })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.9/sdk.js', 'AotterTrek');
 
         // Notice: replace your own client id.
         AotterTrek('init', 'yEFcFoJaruNorh5RqtuR');

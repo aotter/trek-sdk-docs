@@ -1,4 +1,6 @@
 # Ｗeb
+- 2020/6/10 release `3.2.9`
+    - Adjust ad impression report trigger.
 - 2020/2/20 release `3.2.7`
     - Add trigger onAdLoad() with more ad information.
     - Fix trek-popup will cover entire page. It leads iOS device can't select
@@ -15,4 +17,3 @@
     - Deprecated Video Native code.
     - Reduce package size.
     - New Babel and Webpack.
-
