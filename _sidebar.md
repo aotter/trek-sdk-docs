@@ -25,9 +25,7 @@
 	* [Getting Started](/Web/GettingStarted)
 	* [Install SDK](/Web/Install_SDK)
 	* [APIs](/Web/APIs)
-	<!-- * [Video Ad](/Web/Video) -->
 	* [Supr Ad](/Web/Supr_Ad)
 	* [AdManager](/Web/AdManager)
 	* [TkAdn](/Web/TkAdn)
-	* [Tracker](/Web/Tracker)
 	* [User Setting](/Web/UserSetting)

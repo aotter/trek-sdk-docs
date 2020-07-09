@@ -1,5 +1,5 @@
-# AdManager (DoubleClick for Publisher)
-
+# Google Ad Manager (DoubleClick for Publisher)
+---
 
 ### How to use AdManager publish AotterTrek Ads?
 > This section will guide you through which how to publish AotterTrek Ads use AdManager, two steps you need to do, first is create `Ad Unit` and other is `Order`.
