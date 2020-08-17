@@ -1,6 +1,9 @@
 # Mopub Medaiton Guide
 
 ## 1. add mediation file to your project
+
+download mediation-files [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/untagged-00f28d7b1d5d801d9d2a/Mopub-meidation-intergarion.zip)
+
    - AotterTrekNativeAdapater
    - AotterTrekNativeCustomEvent
    - AotterTrekNativeAdRenderer
