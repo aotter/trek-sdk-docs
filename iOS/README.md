@@ -1,5 +1,8 @@
 # IOS
 
+- 2020/08/25 release 3.3.6
+  - enable bitcode
+  - remove all UIWebView in SDK
 - 2020/02/19 release `3.3.5`
   - fix bug: TKAdNative.fetchAdWithCallback() getting wrong ads.
 - 2020/02/12 release `3.3.4`
