@@ -1,6 +1,8 @@
 # IOS
 
-- 2020/08/25 release 3.3.6
+- 2020/08/26 release `3.4.1`
+	- support Google-IMA-SDK 3.12.1 at least
+- 2020/08/25 release `3.3.6`
   - enable bitcode
   - remove all UIWebView in SDK
 - 2020/02/19 release `3.3.5`

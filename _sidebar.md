@@ -21,6 +21,7 @@
 	* [MyApp Ads Intergration](/iOS/MyApp_ads_intergration)
 	* [Tracker](/iOS/Tracker)
 	* [SDK 3.4.0-beta1 integrate guide](/iOS/SDK_3.4.0-beta1_integrate_guide)
+	* [Prepare for iOS14](/iOS/Prepare_for_iOS14)
 
 * [Web](/Web/)
 	* [Getting Started](/Web/GettingStarted)
