@@ -1,7 +1,9 @@
 # IOS
 
+- 2020/09/24 release `3.4.2`
+	- fix SuprAd may get erro when video play to end. 
 - 2020/08/26 release `3.4.1`
-	- support Google-IMA-SDK 3.12.1 at least
+  - support Google-IMA-SDK 3.12.1 at least
 - 2020/08/25 release `3.3.6`
   - enable bitcode
   - remove all UIWebView in SDK
