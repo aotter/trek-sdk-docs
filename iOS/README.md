@@ -1,5 +1,11 @@
 # IOS
 
+- 2020/10/21 release `3.5.0`
+	- remove SDK's cache pool. respone of ad request is real async now.
+	- add isExpired() to TKAdNative & TKAdSuprAd
+	- add isVideoAd() to TKAdSuprAd
+	- add willAdLogClick & willAdLogImpression to TKAdNative & TKAdSuprAd
+	- change ad loading flow for video type SuprAd.
 - 2020/09/24 release `3.4.2`
 	- fix SuprAd may get erro when video play to end. 
 - 2020/08/26 release `3.4.1`

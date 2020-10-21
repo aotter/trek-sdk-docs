@@ -1,6 +1,6 @@
 # Native Ad
 
-1. create adNative object
+## 1. create adNative object
 
 ```objective-c
  //initial ad with place and category
@@ -16,7 +16,7 @@
    [self.myAdNative fetchAd];
 ```
 
-1. render adNatvie UI object
+## 2. render adNatvie UI object
 
 ```objective-c
 -(void)TKAdNative:(TKAdNative *)ad didReceivedAdWithData:(NSDictionary *)adData{
@@ -47,7 +47,7 @@
 | img_main       | String | 1200x627                               |
 | imgs           | Map    | custom images {label,src,width,height} |
 
-1. ad fail delegates
+## 3. ad fail delegates
 
 ```objective-c
 -(void)TKAdNative:(TKAdNative *)ad fetchError:(TKAdError *)error{
@@ -55,9 +55,30 @@
 }
 ```
 
-1. remove and release
+## 4. remove and release
 
 ```objective-c
-   //remove and release data
-  [self.myAdNative destroy];
+//remove and release data
+[self.myAdNative destroy];
 ```
+
+## 5. more functions 
+
+### isExpired
+```objective-c
+//check the ad is expired or not.
+[self.myAdNative isExpired]; // YES or NO
+```
+
+### impression & click delegate
+```objective-c
+-(void)TKAdNativeWillLogClicked:(TKAdNative *)ad{
+    //will log clicked
+}
+
+-(void)TKAdNativeWillLogImpression:(TKAdNative *)ad{
+    //will log impression
+}
+```
+
+
