@@ -1,5 +1,7 @@
 # IOS
 
+- 2020/10/22 release 3.5.1
+	- make sure ad place is requried for TKAdNative & TKAdSuprAd initial.
 - 2020/10/21 release `3.5.0`
 	- remove SDK's cache pool. respone of ad request is real async now.
 	- add isExpired() to TKAdNative & TKAdSuprAd
