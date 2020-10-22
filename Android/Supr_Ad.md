@@ -96,3 +96,15 @@ public void onDestroy() {
 }
 
 ```
+
+### isExpired
+check the ad is expired or not.
+```java
+nativeAd.isExpired();
+```
+
+### isVideoAd
+check the ad is video or not.
+```java
+nativeAd.isVideoAd();
+```
