@@ -1,6 +1,6 @@
 # AdManager setting
 
-## Enable Ad cache (removed after SDK 3.2~)
+## Enable Ad cache (removed after SDK 3.2)
 
 1. (default) when ad cache is eanbled, requesting ad will get failed immediately at the first time.
 2. If you disable ad cache, all ad request will take some time to get callback.
@@ -17,7 +17,7 @@
 
 
 
-## Ad pre-fetching
+## Ad pre-fetching (deprecated in 3.5.0)
 
 1. Only availble when ad cache eanbled.
 2. Prefetch size depends on ad cach pool size, which can set by `enableAdCachePoolWithIndiviaulPoolSize`
@@ -40,7 +40,7 @@
 
 
 
-## Clear Ad cache
+## Clear Ad cache (deprecated in 3.5.0)
 
 1. Remove cached ad from storage if needed.
 
