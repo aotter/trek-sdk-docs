@@ -1,4 +1,5 @@
 # APIs
+---
 
 ## AotterTrek('init', 'CLIENT_ID')
 
@@ -7,7 +8,7 @@
 #### Arguments
 | order | name      | type     | note                                         |
 |-------|-----------|----------|----------------------------------------------|
-| 1     | init      | `string` | Only accept "nativeAd", "videoAd", "suprAd". |
+| 1     | init      | `enum` | Only accept "nativeAd", "videoAd", "suprAd". |
 | 2     | CLIENT_ID | `string` | A client_id from trek.                       |
 
 
@@ -36,7 +37,7 @@ AotterTrek('init', 'CLIENT_ID');
 #### Options
 | name        | type                  | note                                                                       |
 |-------------|-----------------------|----------------------------------------------------------------------------|
-| selector    | `string`or`element`   | The target element or selector.                                            |
+| selector    | `string` or `element`   | The CSS selector or target element.                                            |
 | layout      | `string`              | If this set, using default Trek ad layout.                                 |
 | place       | `string`              | Custom placement name, you can check out analytics data in Trek Dashboard. |
 | trekNetwork | `string`              | Set ad network "trek" or "house", default by "trek".                       |
