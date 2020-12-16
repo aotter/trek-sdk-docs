@@ -514,18 +514,21 @@ static NSInteger googleMediationSuprAdPosition = 6;
     
     // Delegate 回來的 nativeAd 已經可以接取到自己的 Custom Ad View，
     // 在這裡我將 nativeAd 放到 CustomTableViewCell 去接資料
-    // 需注意拉 suprAd & nativeAd 的廣告順序，避免廣告被前一個不同類型的廣告覆蓋過去
     
     if (nativeAd != nil) {
-    
-    		// For NativeAd
-        _gADUnifiedNativeAd = nativeAd;
         
-        // For SuprAd
-        _gADUnifiedSuprAd = nativeAd;
-        
-        [self.adTableView reloadData];
+        if ([[nativeAd.extraAssets allKeys]containsObject:@"trekAd"]) {
+            NSString *key = nativeAd.extraAssets[@"trekAd"];
+            
+            if ([key isEqualToString:@"nativeAd"]) {
+                _gADUnifiedNativeAd = nativeAd;
+            }else if ([key isEqualToString:@"suprAd"]) {
+                _gADUnifiedSuprAd = nativeAd;
+            }
+        }
     }
+    
+    [self.adTableView reloadData];
 }
 
 - (void)adLoader:(nonnull GADAdLoader *)adLoader didFailToReceiveAdWithError:(nonnull GADRequestError *)error {
