@@ -505,7 +505,9 @@ static NSInteger googleMediationSuprAdPosition = 6;
 #pragma mark : ScrlloView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self.delegate rootViewControllerScrollViewDidScroll:scrollView];
+		if (_gADUnifiedSuprAd != nil) {
+        [self.delegate rootViewControllerScrollViewDidScroll:scrollView];
+    }
 }
 
 #pragma mark - GADUnifiedNativeAdLoaderDelegate
