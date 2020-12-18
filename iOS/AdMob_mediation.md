@@ -1,34 +1,25 @@
 # AdMob mediation intergration guide
 
-! only support TKAdNative now !
-
 ## Step 1. prepare Custon Event file for AotterTrek
 
-follow the Ofiicial Guiide [here](https://developers.google.com/admob/ios/native/native-custom-events) (recommend)
-
-or just download the file we prepared [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.3.5/AotterTrek-iOS-SDK.framework.zip) and add files to your projects from "AotterTrek adMob mediation file" folder
-
-
+follow the official Guide [here](https://developers.google.com/admob/ios/native/native-custom-events) (recommend)
+or just download the file we prepared [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.3/AotterTrek.adMob.mediation.zip) and add files to your projects from "AotterTrek adMob mediation file" folder.
 
 ##  Step 2. set adMob mediation in your adMob mediation group panel 
 
 Class Name: AotterTrekGADCustomEventNativeAd (or the file title you created)
-
 Parameter: {"adType":"nativeAd", "adPlace":"<your ad place>"}
+![AdMob Setting](https://user-images.githubusercontent.com/3615917/102583345-7fee4980-413f-11eb-9538-4304a18432db.png)
 
 
 
 ## Step 3. render Google AdMob ads
 
-follow the [Offical Guilde](AotterTrek adMob mediation file) to render google ads through mediation.
-
-Download:  [AotterTrek.adMob.mediation.zip](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.3/AotterTrek.adMob.mediation.zip)
-
-Add AotterTrekGADMediation files to your project.
+### Initial The AotterTrek SDK
 
 File: AppDelegate.m
 
-```
+```objective-c
 /// Need to import Lib
 #import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
@@ -54,13 +45,12 @@ File: AppDelegate.m
 
 
 
-Custom TableViewCell (or CollectionViewCell)
+### Customize TableViewCell (or CollectionViewCell)
 
-Here we custom two TableViewCell: TrekNativeAdTableViewCell & TrekSuprAdTableViewCell
-
+Here we customize two TableViewCell: TrekNativeAdTableViewCell & TrekSuprAdTableViewCell
 File: TrekNativeAdTableViewCell.h
 
-```
+```objective-c
 #import <UIKit/UIKit.h>
 #import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
@@ -84,11 +74,11 @@ NS_ASSUME_NONNULL_END
 
 
 
+### Declare a GADUnifiedNativeAd data method:
+
 File: TrekNativeAdTableViewCell.m
 
-Declared a GADUnifiedNativeAd data method:
-
-```
+```objective-c
 // Google Mediation NativeAd
 
 - (void)setGADUnifiedNativeAdData:(GADUnifiedNativeAd *)nativeAd {
@@ -112,7 +102,7 @@ File: TrekNativeAdTableViewCell.xib
 
 File: TrekSuprAdTableViewCell.h
 
-```
+```objective-c
 #import <UIKit/UIKit.h>
 #import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
@@ -130,11 +120,12 @@ NS_ASSUME_NONNULL_END
 
 
 
+
+### Declare a GADUnifiedNativeAd data method:
+
 File: TrekSuprAdTableViewCell.m
 
-Declared a GADUnifiedNativeAd data method:
-
-```
+```objective-c
 // Google Mediation SuprAD
 
 - (void)setGADUnifiedNativeAdData:(GADUnifiedNativeAd *)nativeAd withViewSize:(CGSize)size {
@@ -169,24 +160,31 @@ File:TrekSuprAdTableViewCell.xib
 
 
 
-File: ViewController.h (Can use your Custom ViewController)
+//TODO: GAD AdLoaders, render view
 
-If you ready to use SuprAd advertising type, need to implement delegate:
 
-```
+
+# Step 4. Additional Method for SuprAd (AdScrolled)
+
+The AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to to the position of the ad.
+Therefore, you should add additional method in following:
+
+File: YourViewController.h (the ViewController that rendering the AdView)
+
+```objective-c
 #import <UIKit/UIKit.h>
 
-@protocol ViewControllerDelegate <NSObject>
+@protocol YourViewControllerDelegate <NSObject>
 
 - (void)rootViewControllerScrollViewDidScroll:(UIScrollView *)scrollView;
 
 @end
 
-@interface ViewController : UIViewController
+@interface YourViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *adTableView;
 
-@property id<ViewControllerDelegate> delegate;
+@property id<YourViewControllerDelegate> delegate;
 
 @end
 ```
@@ -195,9 +193,7 @@ If you ready to use SuprAd advertising type, need to implement delegate:
 
 File: ViewController.m (Can use your Custom ViewController)
 
-If you ready to use SuprAd advertising type, need to implement ScrlloView delegate, the reason is that AotterTrek SuprAd needs to generate part of SuprAd's interactive behavior when your App has a sliding behavior. 
-
-```
+```objective-c
 // Define the display position of the ad in the TableView
 static NSInteger googleMediationNativeAdPosition = 2;
 static NSInteger googleMediationSuprAdPosition = 6;
@@ -353,13 +349,11 @@ static NSInteger googleMediationSuprAdPosition = 6;
 
 
 
-If you ready to use SuprAd advertising type, please pay special attention to implement the content:
+### CustomViewController need to modify your ViewController class.
 
 File: AotterTrekGADCustomEventNativeAd.m
 
-CustomViewController need to modify your ViewController class.
-
-```
+```objective-c
 @interface AotterTrekGADCustomEventNativeAd()<ViewControllerDelegate> {
 
 		// 部分參數忽略
@@ -370,7 +364,7 @@ CustomViewController need to modify your ViewController class.
     // CustomViewController 隨著自己定義的 ViewController 來決定
     // EX: SomeViewController (Your Custom ViewController)
     // declared: SomeViewController *_customViewController;
-    ViewController *_customViewController;
+    YourViewController *_customViewController;
 }
 
 
@@ -407,7 +401,7 @@ CustomViewController need to modify your ViewController class.
 
 ## Demo App:
 
-If you went to download Demo app, you need to configure GADApplicationIdentifier and Ad Unit in projects.
+If you want to download Demo app, you need to configure GADApplicationIdentifier and Ad Unit in projects.
 
 Download: [AotterGoogleMediationAd.zip](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.3/AotterGoogleMediationAd.zip)
 
