@@ -108,7 +108,7 @@ Declared a GADUnifiedNativeAd data method:
 
 File: TrekNativeAdTableViewCell.xib
 
-![TrekNativeAdTableViewCell](./GoogleAdMobMediationSuprAD/TrekNativeAdTableViewCell.png)
+![TrekNativeAdTableViewCell](https://github.com/aotter/trek-sdk-docs/wiki/GoogleAdMobMediationSuprAD/TrekNativeAdTableViewCell.png)
 
 File: TrekSuprAdTableViewCell.h
 
@@ -165,7 +165,7 @@ Declared a GADUnifiedNativeAd data method:
 
 File:TrekSuprAdTableViewCell.xib
 
-![TrekSuprAdTableViewCel](./GoogleAdMobMediationSuprAD/TrekSuprAdTableViewCell.png)
+![TrekSuprAdTableViewCel](https://github.com/aotter/trek-sdk-docs/wiki/GoogleAdMobMediationSuprAD/TrekSuprAdTableViewCell.png)
 
 
 
@@ -413,9 +413,9 @@ Download: [AotterGoogleMediationAd.zip](https://github.com/aotter/AotterTrek-iOS
 
 File: ViewController.m
 
-![Ad Unit](./GoogleAdMobMediationSuprAD/GoogleMediationDemoAppViewController.png)
+![Ad Unit](https://github.com/aotter/trek-sdk-docs/wiki/GoogleAdMobMediationSuprAD/GoogleMediationDemoAppViewController.png)
 
 File: Info.plist
 
-![GADApplicationIdentifier](./GoogleAdMobMediationSuprAD/GoogleMediationDemoAppInfo.png)
+![GADApplicationIdentifier](https://github.com/aotter/trek-sdk-docs/wiki/GoogleAdMobMediationSuprAD/GoogleMediationDemoAppInfo.png)
 
