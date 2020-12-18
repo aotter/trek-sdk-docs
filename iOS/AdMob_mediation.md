@@ -403,3 +403,17 @@ CustomViewController need to modify your ViewController class.
 @end
 ```
 
+---
+
+## Demo App:
+
+If you went to download Demo app, you need to configure GADApplicationIdentifier and Ad Unit in projects.
+
+File: ViewController.m
+
+![Ad Unit](./GoogleAdMobMediationSuprAD/GoogleMediationDemoAppViewController.png)
+
+File: Info.plist
+
+![GADApplicationIdentifier](./GoogleAdMobMediationSuprAD/GoogleMediationDemoAppInfo.png)
+
