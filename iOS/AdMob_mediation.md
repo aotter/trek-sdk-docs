@@ -160,38 +160,9 @@ File:TrekSuprAdTableViewCell.xib
 
 
 
-//TODO: GAD AdLoaders, render view
+File: YourViewController.h
 
-
-
-# Step 4. Additional Method for SuprAd (AdScrolled)
-
-The AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to to the position of the ad.
-Therefore, you should add additional method in following:
-
-File: YourViewController.h (the ViewController that rendering the AdView)
-
-```objective-c
-#import <UIKit/UIKit.h>
-
-@protocol YourViewControllerDelegate <NSObject>
-
-- (void)rootViewControllerScrollViewDidScroll:(UIScrollView *)scrollView;
-
-@end
-
-@interface YourViewController : UIViewController
-
-@property (weak, nonatomic) IBOutlet UITableView *adTableView;
-
-@property id<YourViewControllerDelegate> delegate;
-
-@end
-```
-
-
-
-File: ViewController.m (Can use your Custom ViewController)
+YourViewController that rendering the AdView(include NativeAd & SuprAd) process:
 
 ```objective-c
 // Define the display position of the ad in the TableView
@@ -201,7 +172,7 @@ static NSInteger googleMediationSuprAdPosition = 6;
 .
 .
 
-@interface ViewController ()<GADUnifiedNativeAdLoaderDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface YourViewController ()<GADUnifiedNativeAdLoaderDelegate, UITableViewDataSource, UITableViewDelegate> {
 		// For NativeAd
     GADUnifiedNativeAd *_gADUnifiedNativeAd; 
     
@@ -211,7 +182,7 @@ static NSInteger googleMediationSuprAdPosition = 6;
     CGFloat _viewHeight;
 }
 
-@implementation ViewController
+@implementation YourViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -292,7 +263,6 @@ static NSInteger googleMediationSuprAdPosition = 6;
     return  cell;
 }
 
-
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -307,14 +277,6 @@ static NSInteger googleMediationSuprAdPosition = 6;
         return _gADUnifiedSuprAd == nil ? 0:_viewHeight;
     }
     return 80;
-}
-
-#pragma mark : ScrlloView delegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-		if (_gADUnifiedSuprAd != nil) {
-        [self.delegate rootViewControllerScrollViewDidScroll:scrollView];
-    }
 }
 
 #pragma mark - GADUnifiedNativeAdLoaderDelegate
@@ -345,6 +307,47 @@ static NSInteger googleMediationSuprAdPosition = 6;
 }
 
 @end
+```
+
+
+
+# Step 4. Additional Method for SuprAd (AdScrolled)
+
+The AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to to the position of the ad.
+Therefore, you should add additional method in following:
+
+File: YourViewController.h (the ViewController that rendering the AdView)
+
+```objective-c
+#import <UIKit/UIKit.h>
+
+@protocol YourViewControllerDelegate <NSObject>
+
+- (void)rootViewControllerScrollViewDidScroll:(UIScrollView *)scrollView;
+
+@end
+
+@interface YourViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UITableView *adTableView;
+
+@property id<YourViewControllerDelegate> delegate;
+
+@end
+```
+
+
+
+File: ViewController.m (Can use your Custom ViewController)
+
+```objective-c
+#pragma mark : ScrlloView delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+		if (_gADUnifiedSuprAd != nil) {
+        [self.delegate rootViewControllerScrollViewDidScroll:scrollView];
+    }
+}
 ```
 
 
