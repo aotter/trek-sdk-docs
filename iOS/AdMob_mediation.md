@@ -409,6 +409,8 @@ CustomViewController need to modify your ViewController class.
 
 If you went to download Demo app, you need to configure GADApplicationIdentifier and Ad Unit in projects.
 
+Download: [AotterGoogleMediationAd.zip](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.3/AotterGoogleMediationAd.zip)
+
 File: ViewController.m
 
 ![Ad Unit](./GoogleAdMobMediationSuprAD/GoogleMediationDemoAppViewController.png)
