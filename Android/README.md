@@ -1,4 +1,7 @@
 # Android
+- 2020/12/25 release `3.2.1`
+    - fixed impression issue
+    - fixed request listener issue
 - 2020/10/22 release `3.2.0`
     - remove sdk cache 
     - add isExpired() 

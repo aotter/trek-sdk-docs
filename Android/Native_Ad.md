@@ -43,7 +43,7 @@ tkAdN.setAdListener(new TKAdListener() {
 
 ```java
 @Override
-public void onAdLoaded(NativeAd nativeAd) {
+public void onAdLoaded(TKAdNative nativeAd) {
 
   String adTitle = nativeAd.getAdTitle();
   String adText = nativeAd.getAdText();
@@ -92,4 +92,10 @@ public void onDestroy() {
   }
 }
 
+```
+
+### isExpired
+check the ad is expired or not.
+```java
+nativeAd.isExpired();
 ```
