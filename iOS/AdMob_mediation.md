@@ -1,207 +1,418 @@
 # AdMob mediation intergration guide
 
-! only support TKAdNative now !
-
 ## Step 1. prepare Custon Event file for AotterTrek
 
-follow the Ofiicial Guiide [here](https://developers.google.com/admob/ios/native/native-custom-events) (recommend)
-
-or just download the file we prepared [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.3.5/AotterTrek-iOS-SDK.framework.zip) and add files to your projects from "AotterTrek adMob mediation file" folder
-
-
+follow the official Guide [here](https://developers.google.com/admob/ios/native/native-custom-events) (recommend)
+or just download the file we prepared [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.3/AotterTrek.adMob.mediation.zip) and add files to your projects from "AotterTrek adMob mediation file" folder.
 
 ##  Step 2. set adMob mediation in your adMob mediation group panel 
 
 Class Name: AotterTrekGADCustomEventNativeAd (or the file title you created)
-
 Parameter: {"adType":"nativeAd", "adPlace":"<your ad place>"}
+![AdMob Setting](https://user-images.githubusercontent.com/3615917/102583345-7fee4980-413f-11eb-9538-4304a18432db.png)
 
 
 
 ## Step 3. render Google AdMob ads
 
-follow the [Offical Guilde](AotterTrek adMob mediation file) to render google ads through mediation.
+### Initial The AotterTrek SDK
 
-this part depends on your app's life cycle, but we provide example at "sample ad view for rendering AotterTrek naitve ad" folder for you:
+File: AppDelegate.m
+
+```objective-c
+/// Need to import Lib
+#import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
+.
+.
+.
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Override point for customization after application launch.
+    
+    [[GADMobileAds sharedInstance] startWithCompletionHandler:nil];
+    
+    [[AotterTrek sharedAPI] initTrekServiceWithClientId:@"21tgwWwuzFYiD4ko5Klr"
+                                                   secret:@"fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44"];
+    
+    // Open Log
+    //[[AotterTrek sharedAPI] performSelector:@selector(enableLoggerLevelDevDetail)];
+    
+    return YES;
+}
 
 ```
+
+
+
+### Customize TableViewCell (or CollectionViewCell)
+
+Here we customize two TableViewCell: TrekNativeAdTableViewCell & TrekSuprAdTableViewCell
+File: TrekNativeAdTableViewCell.h
+
+```objective-c
+#import <UIKit/UIKit.h>
+#import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
+#import <SDWebImage/SDWebImage.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface TrekNativeAdTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *adImageView;
+@property (weak, nonatomic) IBOutlet UILabel *adTilteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *adDescrLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sponsoredLabel;
+
+- (void)setGADUnifiedNativeAdData:(GADUnifiedNativeAd *)nativeAd;
+
+@end
+
+NS_ASSUME_NONNULL_END
+```
+
+
+
+### Declare a GADUnifiedNativeAd data method:
+
+File: TrekNativeAdTableViewCell.m
+
+```objective-c
+// Google Mediation NativeAd
+
+- (void)setGADUnifiedNativeAdData:(GADUnifiedNativeAd *)nativeAd {
+    
+    // Use "SDWebImage" Third-party
+    [self.adImageView sd_setImageWithURL:nativeAd.icon.imageURL];
+    
+    self.adTilteLabel.text = nativeAd.headline;
+    self.adDescrLabel.text = nativeAd.body;
+    self.sponsoredLabel.text = [NSString stringWithFormat:@"%@ | %@",
+                                @"贊助",
+                                nativeAd.advertiser];
+}
+```
+
+
+
+File: TrekNativeAdTableViewCell.xib
+
+![TrekNativeAdTableViewCell](https://github.com/aotter/trek-sdk-docs/wiki/GoogleAdMobMediationSuprAD/TrekNativeAdTableViewCell.png)
+
+File: TrekSuprAdTableViewCell.h
+
+```objective-c
+#import <UIKit/UIKit.h>
+#import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface TrekSuprAdTableViewCell : UITableViewCell
+
+- (void)setGADUnifiedNativeAdData:(GADUnifiedNativeAd *)nativeAd withViewSize:(CGSize)size;
+
+@end
+
+NS_ASSUME_NONNULL_END
+```
+
+
+
+
+### Declare a GADUnifiedNativeAd data method:
+
+File: TrekSuprAdTableViewCell.m
+
+```objective-c
+// Google Mediation SuprAD
+
+- (void)setGADUnifiedNativeAdData:(GADUnifiedNativeAd *)nativeAd withViewSize:(CGSize)size {
+    
+    // Clear contentView subviews
+    for (UIView *subView in self.contentView.subviews) {
+        [subView removeFromSuperview];
+    }
+    
+    //self.contentView.backgroundColor = [UIColor redColor];
+    
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    GADMediaView *gADMediaView = [[GADMediaView alloc]initWithFrame:rect];
+    gADMediaView.mediaContent = nativeAd.mediaContent;
+    [self.contentView addSubview:gADMediaView];
+
+    [gADMediaView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    [gADMediaView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [gADMediaView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor].active = YES;
+    [gADMediaView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor].active = YES;
+    [gADMediaView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor].active = YES;
+    [gADMediaView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor].active = YES;
+}
+```
+
+
+
+File:TrekSuprAdTableViewCell.xib
+
+![TrekSuprAdTableViewCel](https://github.com/aotter/trek-sdk-docs/wiki/GoogleAdMobMediationSuprAD/TrekSuprAdTableViewCell.png)
+
+
+
+File: YourViewController.h
+
+YourViewController that rendering the AdView(include NativeAd & SuprAd) process:
+
+```objective-c
+// Define the display position of the ad in the TableView
+static NSInteger googleMediationNativeAdPosition = 2;
+static NSInteger googleMediationSuprAdPosition = 6;
+.
+.
+.
+
+@interface YourViewController ()<GADUnifiedNativeAdLoaderDelegate, UITableViewDataSource, UITableViewDelegate> {
+		// For NativeAd
+    GADUnifiedNativeAd *_gADUnifiedNativeAd; 
+    
+    // For SuprAd
+    GADUnifiedNativeAd *_gADUnifiedSuprAd;
+    CGFloat _viewWidth;
+    CGFloat _viewHeight;
+}
+
+@implementation YourViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
-    [self initialTableView];
     
-    /* some adLoader options may help
-        GADNativeAdImageAdLoaderOptions
-        GADNativeAdMediaAdLoaderOptions
-        GADMultipleAdsAdLoaderOptions
-     */
+    _viewWidth = UIScreen.mainScreen.bounds.size.width;
+    _viewHeight = _viewWidth * 9/16;
+    
+    [self setupTableVie];
+    [self setupGADAdLoader];
+}
+
+#pragma mark : Setup TableView
+
+- (void)setupTableVie {
+    self.adTableView.dataSource = self;
+    self.adTableView.delegate = self;
     
     
+    [self.adTableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"Cell"];
     
-    //GAD adLoader
-    self.adLoader = [[GADAdLoader alloc]
-          initWithAdUnitID:@"<your adUnit Id>"
-        rootViewController:self
-                   adTypes:@[kGADAdLoaderAdTypeUnifiedNative]
-                   options:@[  ]];
+    [self.adTableView registerNib:[UINib nibWithNibName:@"TrekNativeAdTableViewCell" bundle:nil] forCellReuseIdentifier:@"TrekNativeAdTableViewCell"];
+    
+    [self.adTableView registerNib:[UINib nibWithNibName:@"TrekSuprAdTableViewCell" bundle:nil] forCellReuseIdentifier:@"TrekSuprAdTableViewCell"];
+}
+
+#pragma mark : Setup GADAdLoader
+
+- (void)setupGADAdLoader {
+    
+    self.adLoader = [[GADAdLoader alloc]initWithAdUnitID: @"<your adUnit Id>"
+                                      rootViewController: self
+                                                 adTypes: @[kGADAdLoaderAdTypeUnifiedNative]
+                                                 options: @[]];
+    
     self.adLoader.delegate = self;
 
+    [self adLoaderLoadRequest];
+}
+
+- (void)adLoaderLoadRequest {
     [self.adLoader loadRequest:[GADRequest request]];
 }
 
+#pragma mark - UITableViewDataSource
 
-
--(void)viewWillDisappear:(BOOL)animated{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
--(IBAction)done:(id)sender{
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 30;
 }
 
-
--(void)initialTableView{
-    self.mainTableView = [[UITableView alloc] init];
-    [self.view addSubview:self.mainTableView];
-    self.mainTableView.delegate = self;
-    self.mainTableView.dataSource = self;
-    [self.mainTableView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    NSDictionary *views = @{@"tableView": self.mainTableView};
-    NSArray *arr = @[];
-    arr = [arr arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tableView]-0-|" options:0 metrics:nil views:views]];
-    arr = [arr arrayByAddingObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tableView]-0-|" options:0 metrics:nil views:views]];
-    [NSLayoutConstraint activateConstraints:arr];
-    [self.mainTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"adCell"];
-    [self.mainTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    
-    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    [refresh addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.mainTableView addSubview:refresh];
-}
-
--(void)onRefresh:(UIRefreshControl *)refreshControl{
-    [refreshControl endRefreshing];
-    self.adCell = nil;
-    [self.mainTableView reloadData];
-
-}
-
-
--(void)setAdView:(GADUnifiedNativeAdView *)adView{
-    self.adCell = [self.mainTableView dequeueReusableCellWithIdentifier:@"adCell"];
-    [self.adCell.contentView addSubview:adView];
-    [adView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [adView.leadingAnchor constraintEqualToAnchor:self.adCell.contentView.leadingAnchor].active = YES;
-    [adView.trailingAnchor constraintEqualToAnchor:self.adCell.contentView.trailingAnchor].active = YES;
-    [adView.topAnchor constraintEqualToAnchor:self.adCell.contentView.topAnchor].active = YES;
-    [adView.bottomAnchor constraintEqualToAnchor:self.adCell.contentView.bottomAnchor].active = YES;
-}
-
-
-#pragma mark - GAD adLoader
-- (void)adLoader:(GADAdLoader *)adLoader didReceiveUnifiedNativeAd:(GADUnifiedNativeAd *)nativeAd{
-    NSLog(@"[GAD adLoader] didReceiveUnifiedNativeAd: %@", nativeAd);
-    GoogleUnifiedNativeAdView *nativeAdView = [[NSBundle mainBundle] loadNibNamed:@"GoogleUnifiedNativeAdView" owner:nil options:nil].firstObject;
-    [self setAdView:nativeAdView];
-    
-    // Set the mediaContent on the GADMediaView to populate it with available
-    // video/image asset.
-    nativeAdView.mediaView.mediaContent = nativeAd.mediaContent;
-    
-    // Populate the native ad view with the native ad assets.
-    // The headline is guaranteed to be present in every native ad.
-    ((UILabel *)nativeAdView.headlineView).text = nativeAd.headline;
-
-    // These assets are not guaranteed to be present. Check that they are before
-    // showing or hiding them.
-    ((UILabel *)nativeAdView.bodyView).text = nativeAd.body;
-    nativeAdView.bodyView.hidden = nativeAd.body ? NO : YES;
-
-    [((UIButton *)nativeAdView.callToActionView)setTitle:nativeAd.callToAction
-                                                forState:UIControlStateNormal];
-    nativeAdView.callToActionView.hidden = nativeAd.callToAction ? NO : YES;
-
-    if(nativeAd.icon.image){
-        ((UIImageView *)nativeAdView.iconView).image = nativeAd.icon.image;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+     
+    // For NativeAd
+    if (indexPath.row == googleMediationNativeAdPosition) {
+        if (_gADUnifiedNativeAd != nil) {
+            TrekNativeAdTableViewCell *trekNativeAdTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"TrekNativeAdTableViewCell" forIndexPath:indexPath];
+            [trekNativeAdTableViewCell setGADUnifiedNativeAdData:_gADUnifiedNativeAd];
+            return trekNativeAdTableViewCell;
+        }
     }
-    else if (nativeAd.icon.imageURL){
-        [((UIImageView *)nativeAdView.iconView) sd_setImageWithURL:nativeAd.icon.imageURL];
-    }
-    nativeAdView.iconView.hidden = NO;
-
-
-    ((UILabel *)nativeAdView.storeView).text = nativeAd.store;
-    nativeAdView.storeView.hidden = nativeAd.store ? NO : YES;
-
-    ((UILabel *)nativeAdView.priceView).text = nativeAd.price;
-    nativeAdView.priceView.hidden = nativeAd.price ? NO : YES;
-
-    ((UILabel *)nativeAdView.advertiserView).text = nativeAd.advertiser;
-    nativeAdView.advertiserView.hidden = nativeAd.advertiser ? NO : YES;
-
-    // In order for the SDK to process touch events properly, user interaction
-    // should be disabled.
-    nativeAdView.callToActionView.userInteractionEnabled = NO;
-
-    // Associate the native ad view with the native ad object. This is
-    // required to make the ad clickable.
-    nativeAdView.nativeAd = nativeAd;
     
-    [self.mainTableView reloadData];
+    // For SuprAd
+    if (indexPath.row == googleMediationSuprAdPosition) {
+        if(_gADUnifiedSuprAd != nil) {
+            TrekSuprAdTableViewCell *trekSuprAdTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"TrekSuprAdTableViewCell" forIndexPath:indexPath];
+            
+            CGSize size = CGSizeMake(_viewWidth, _viewHeight);
+            [trekSuprAdTableViewCell setGADUnifiedNativeAdData:_gADUnifiedSuprAd withViewSize:size];
+            return trekSuprAdTableViewCell;
+        }
+    }
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.textLabel.text = [[NSString alloc]initWithFormat:@"index:%ld",(long)indexPath.row];
+    return  cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+		// For NativeAd
+    if (indexPath.row == googleMediationNativeAdPosition) {
+        return _gADUnifiedNativeAd == nil ? 0:80;
+    }
+    
+    // For SuprAd
+    if (indexPath.row == googleMediationSuprAdPosition) {
+        return _gADUnifiedSuprAd == nil ? 0:_viewHeight;
+    }
+    return 80;
+}
+
+#pragma mark - GADUnifiedNativeAdLoaderDelegate
+
+- (void)adLoader:(nonnull GADAdLoader *)adLoader didReceiveUnifiedNativeAd:(nonnull GADUnifiedNativeAd *)nativeAd {
+    
+    // Delegate 回來的 nativeAd 已經可以接取到自己的 Custom Ad View，
+    // 在這裡我將 nativeAd 放到 CustomTableViewCell 去接資料
+    
+    if (nativeAd != nil) {
+        
+        if ([[nativeAd.extraAssets allKeys]containsObject:@"trekAd"]) {
+            NSString *key = nativeAd.extraAssets[@"trekAd"];
+            
+            if ([key isEqualToString:@"nativeAd"]) {
+                _gADUnifiedNativeAd = nativeAd;
+            }else if ([key isEqualToString:@"suprAd"]) {
+                _gADUnifiedSuprAd = nativeAd;
+            }
+        }
+    }
+    
+    [self.adTableView reloadData];
 }
 
 - (void)adLoader:(nonnull GADAdLoader *)adLoader didFailToReceiveAdWithError:(nonnull GADRequestError *)error {
-    NSLog(@"[GAD adLoader] error: %@", error.description);
+    NSLog(@"Error Message:%@",error.description);
 }
 
-- (void)nativeAdDidRecordImpression:(GADUnifiedNativeAd *)nativeAd {
-    NSLog(@"[GAD adLoader] nativeAdDidRecordImpression");
-}
+@end
+```
 
-- (void)nativeAdDidRecordClick:(GADUnifiedNativeAd *)nativeAd {
-  NSLog(@"[GAD adLoader] nativeAdDidRecordClick");
-}
 
-- (void)nativeAdWillPresentScreen:(GADUnifiedNativeAd *)nativeAd {
-  NSLog(@"[GAD adLoader] nativeAdWillPresentScreen");
-}
 
-- (void)nativeAdWillDismissScreen:(GADUnifiedNativeAd *)nativeAd {
-  NSLog(@"[GAD adLoader] nativeAdWillDismissScreen");
-}
+# Step 4. Additional Method for SuprAd (AdScrolled)
 
-- (void)nativeAdDidDismissScreen:(GADUnifiedNativeAd *)nativeAd {
-  NSLog(@"[GAD adLoader] nativeAdDidDismissScreen");
-}
+The AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to to the position of the ad.
+Therefore, you should add additional method in following:
 
-- (void)nativeAdWillLeaveApplication:(GADUnifiedNativeAd *)nativeAd {
-  // The native ad will cause the application to become inactive and
-  // open a new application.
-    NSLog(@"[GAD adLoader] nativeAdWillLeaveApplication");
-}
+File: YourViewController.h (the ViewController that rendering the AdView)
 
-#pragma mark -
+```objective-c
+#import <UIKit/UIKit.h>
 
-#define adIndex 10
+@protocol YourViewControllerDelegate <NSObject>
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row == adIndex && self.adCell){
-        return 320;
+- (void)rootViewControllerScrollViewDidScroll:(UIScrollView *)scrollView;
+
+@end
+
+@interface YourViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UITableView *adTableView;
+
+@property id<YourViewControllerDelegate> delegate;
+
+@end
+```
+
+
+
+File: ViewController.m (Can use your Custom ViewController)
+
+```objective-c
+#pragma mark : ScrlloView delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+		if (_gADUnifiedSuprAd != nil) {
+        [self.delegate rootViewControllerScrollViewDidScroll:scrollView];
     }
-    return 44;
-}
-
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    if(indexPath.row == adIndex && self.adCell){
-        return self.adCell;
-    }
-    
-    UITableViewCell *cell = [self.mainTableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"index: %ld", indexPath.row];
-    return cell;
-}
-
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 50;
 }
 ```
+
+
+
+### CustomViewController need to modify your ViewController class.
+
+File: AotterTrekGADCustomEventNativeAd.m
+
+```objective-c
+@interface AotterTrekGADCustomEventNativeAd()<ViewControllerDelegate> {
+
+		// 部分參數忽略
+		.
+		.
+		.
+		
+    // CustomViewController 隨著自己定義的 ViewController 來決定
+    // EX: SomeViewController (Your Custom ViewController)
+    // declared: SomeViewController *_customViewController;
+    YourViewController *_customViewController;
+}
+
+
+@implementation AotterTrekGADCustomEventNativeAd
+
+- (void)requestNativeAdWithParameter:(NSString *)serverParameter request:(GADCustomEventRequest *)request adTypes:(NSArray *)adTypes options:(NSArray *)options rootViewController:(UIViewController *)rootViewController {
+    
+    // Handle rootViewController delegate, need to transfer your custom ViewController
+    // EX:
+    // _customViewController = (SomeViewController *) rootViewController;
+    // This delegate is your rootViewController delegate
+    
+    _customViewController = (ViewController *) rootViewController;
+    _customViewController.delegate = self;
+    
+    // 部分程式忽略
+    .
+    .
+    .
+}
+
+#pragma mark - ViewControllerDelegate (CustomViewController Scroll Delegate)
+
+- (void)rootViewControllerScrollViewDidScroll:(UIScrollView *)scrollView {
+    if (_suprAd != nil) {
+        [_suprAd notifyAdScrolled];
+    }
+}
+
+@end
+```
+
+---
+
+## Demo App:
+
+If you want to download Demo app, you need to configure GADApplicationIdentifier and Ad Unit in projects.
+
+Download: [AotterGoogleMediationAd.zip](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.3/AotterGoogleMediationAd.zip)
+
+File: ViewController.m
+
+![Ad Unit](https://github.com/aotter/trek-sdk-docs/wiki/GoogleAdMobMediationSuprAD/GoogleMediationDemoAppViewController.png)
+
+File: Info.plist
+
+![GADApplicationIdentifier](https://github.com/aotter/trek-sdk-docs/wiki/GoogleAdMobMediationSuprAD/GoogleMediationDemoAppInfo.png)
 

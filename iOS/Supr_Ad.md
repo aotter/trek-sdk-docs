@@ -81,7 +81,24 @@ NSLog(@"SuprAd ad error: %@", error.description);
 }
 ```
 
-## 6. Destroy ad 
+## 6. Notify While Ad Scrolled
+
+if you render the ad in your scrollView/TableView/CollectionView or anything may have vertical scroll behavior, please call this fuction when the scrollView scrolled.
+
+such as -(void)scrollViewDidScroll:(UIScrollView *)scrollView;
+
+```objective-c
+//example.
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(self.suprAd){
+        [self.suprAd notifyAdScrolled];
+    }
+}
+```
+
+
+
+## 7. Destroy ad 
 
 ```objective-c
 -(void)viewDidDisappear:(BOOL)animated{
@@ -92,18 +109,17 @@ NSLog(@"SuprAd ad error: %@", error.description);
 }
 ```
 
-
-## 7. more functions 
+## 8. more functions 
 
 ### isExpired
 ```objective-c
 //check the ad is expired or not.
-[self.suprAd  isExpired]; // YES or NO
+[self.suprAd isExpired]; // YES or NO
 ```
 
 ### isVideoAd
 ```objective-c
-   [self.suprAd isVideoAd]; //YES or NO
+[self.suprAd isVideoAd]; //YES or NO
 ```
 
 ### impression & click delegate

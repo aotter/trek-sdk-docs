@@ -1,5 +1,5 @@
-# AdManager (DoubleClick for Publisher)
-
+# Google Ad Manager (DoubleClick for Publisher)
+---
 
 ### How to use AdManager publish AotterTrek Ads?
 > This section will guide you through which how to publish AotterTrek Ads use AdManager, two steps you need to do, first is create `Ad Unit` and other is `Order`.
@@ -116,7 +116,7 @@
             js = d.createElement(s); js.id = n;
             w[n] = w[n] || function() { (w[n].q = w[n].q || []).push(arguments) }; w[n].l = 1 * new Date();
             js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
-        })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.7/sdk.js', 'AotterTrek');
+        })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.9/sdk.js', 'AotterTrek');
 
         // Notice: replace your own client id.
         AotterTrek('init', 'yEFcFoJaruNorh5RqtuR');

@@ -1,9 +1,10 @@
 # Installation
+---
 
 Place the following `<script>` near the end of your pages, right before the closing </body> tag, to enable them. 
 
 > [!Warning]
-> Change `client id` value to your own.
+> Change `CLIENT_ID` value to your own.
 
 ```html
 <!-- start: trek sdk -->
@@ -14,9 +15,9 @@ Place the following `<script>` near the end of your pages, right before the clos
     js = d.createElement(s); js.id = n;
     w[n] = w[n] || function() { (w[n].q = w[n].q || []).push(arguments) }; w[n].l = 1 * new Date();
     js.async = 1; js.src = src; ajs.parentNode.insertBefore(js, ajs)
-  })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.7/sdk.js', 'AotterTrek');
+  })(window, document, 'script', 'https://static.aottercdn.com/trek/sdk/3.2.9/sdk.js', 'AotterTrek');
 
-  AotterTrek('init', 'YOUR_CLIENT_ID');
+  AotterTrek('init', 'CLIENT_ID');
 
 </script>
 <!-- end: trek sdk -->

@@ -1,5 +1,9 @@
 # IOS
 
+- 2020/11/17 releaes 3.5.3
+	- supported iAB OM SDK for natvie ads
+- 2020/11/04 release 3.5.2
+	- fix offset issue of suprAd in type parallax.
 - 2020/10/22 release 3.5.1
 	- make sure ad place is requried for TKAdNative & TKAdSuprAd initial.
 - 2020/10/21 release `3.5.0`
