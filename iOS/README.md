@@ -1,5 +1,9 @@
 # IOS
 
+- 2021/01/18 release 3.5.5
+  - fixbug: suprAd.destroy() would cause creash while in background thread.
+- 2021/01/11 release 3.5.4
+  - fixbug: wrong error message when ad no fill.
 - 2020/11/17 releaes 3.5.3
 	- supported iAB OM SDK for natvie ads
 - 2020/11/04 release 3.5.2
