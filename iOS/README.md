@@ -1,14 +1,16 @@
 # IOS
 
-- 2021/01/18 release 3.5.5
+- 2021/01/18 release `3.5.6`
+  - fixbug: suprAd dealloc & destroy() will cause bad exceess crash.
+- - 2021/01/18 release `3.5.5`
   - fixbug: suprAd.destroy() would cause creash while in background thread.
-- 2021/01/11 release 3.5.4
+- 2021/01/11 release `3.5.4`
   - fixbug: wrong error message when ad no fill.
-- 2020/11/17 releaes 3.5.3
+- 2020/11/17 releaes `3.5.3`
 	- supported iAB OM SDK for natvie ads
-- 2020/11/04 release 3.5.2
+- 2020/11/04 release `3.5.2`
 	- fix offset issue of suprAd in type parallax.
-- 2020/10/22 release 3.5.1
+- 2020/10/22 release `3.5.1`
 	- make sure ad place is requried for TKAdNative & TKAdSuprAd initial.
 - 2020/10/21 release `3.5.0`
 	- remove SDK's cache pool. respone of ad request is real async now.
