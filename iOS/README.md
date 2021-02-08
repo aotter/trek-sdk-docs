@@ -1,5 +1,7 @@
 # IOS
 
+- 2021/02/08 release `3.5.7`
+  - Add some logs.
 - 2021/01/18 release `3.5.6`
   - fixbug: suprAd dealloc & destroy() will cause bad exceess crash.
 - - 2021/01/18 release `3.5.5`
