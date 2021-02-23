@@ -10,6 +10,7 @@
   - fixbug: wrong error message when ad no fill.
 - 2020/11/17 releaes `3.5.3`
 	- supported iAB OM SDK for natvie ads
+	- supported adMob mediation files [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.3/AotterTrek.adMob.mediation.zip)
 - 2020/11/04 release `3.5.2`
 	- fix offset issue of suprAd in type parallax.
 - 2020/10/22 release `3.5.1`
