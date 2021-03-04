@@ -3,7 +3,21 @@
 ## Step 1. prepare Custon Event file for AotterTrek
 
 follow the official Guide [here](https://developers.google.com/admob/ios/native/native-custom-events) (recommend)
-or just download the file we prepared [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.3/AotterTrek.adMob.mediation.zip) and add files to your projects from "AotterTrek adMob mediation file" folder.
+or just download the file and add files to your projects from "AotterTrek adMob mediation file" folder.
+
+If your project based on Objective-C，
+
+Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Aotter_GoogleMediation_version7_project_Objc.zip)  with googleAds SDK version 8 below.
+
+Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Aotter_GoogleMediation_version8_project_Objc.zip)  with googleAds SDK version 8 above.
+
+If your project based on Swift，
+
+Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Aotter_GoogleMediation_version7_project_Swift.zip)  with googleAds SDK version 8 below.
+
+Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Aotter_GoogleMediation_version8_project_Swift.zip)  with googleAds SDK version 8 above.
+
+
 
 ##  Step 2. set adMob mediation in your adMob mediation group panel 
 
@@ -48,6 +62,19 @@ File: AppDelegate.m
 ### Customize TableViewCell (or CollectionViewCell)
 
 Here we customize two TableViewCell: TrekNativeAdTableViewCell & TrekSuprAdTableViewCell
+
+Please depends on the GoogleMobileAds SDK version to download the NativeAd View file and add it to the project，
+
+Native ad view version 8 below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/UnifiedNativeAdView_version7.zip)
+
+Native ad view version 8 above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/UnifiedNativeAdView_version8.zip)
+
+Note: View Class depends on the GoogleMobileAds SDK version
+
+![UnifiedNativeAdView](https://user-images.githubusercontent.com/46350143/109942288-03671200-7d0f-11eb-8606-f5689a98ecec.png)
+
+
+
 File: TrekNativeAdTableViewCell.h
 
 ```objective-c
@@ -60,10 +87,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TrekNativeAdTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *adImageView;
-@property (weak, nonatomic) IBOutlet UILabel *adTilteLabel;
-@property (weak, nonatomic) IBOutlet UILabel *adDescrLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sponsoredLabel;
+// Note: The declaration property depends on the SDK version
+@property(nonatomic, strong) GADUnifiedNativeAdView *nativeAdView; 	// GoogleMobileAds version 8 below
+@property(nonatomic, strong) GADNativeAdView *nativeAdView;					// GoogleMobileAds version 8 above
 
 - (void)setGADUnifiedNativeAdData:(GADUnifiedNativeAd *)nativeAd;
 
@@ -79,26 +105,72 @@ NS_ASSUME_NONNULL_END
 File: TrekNativeAdTableViewCell.m
 
 ```objective-c
+
+// The implementation method depends on the SDK version
+
 // Google Mediation NativeAd
 
+// GoogleMobileAds version 8 below
 - (void)setGADUnifiedNativeAdData:(GADUnifiedNativeAd *)nativeAd {
-    
-    // Use "SDWebImage" Third-party
-    [self.adImageView sd_setImageWithURL:nativeAd.icon.imageURL];
-    
-    self.adTilteLabel.text = nativeAd.headline;
-    self.adDescrLabel.text = nativeAd.body;
-    self.sponsoredLabel.text = [NSString stringWithFormat:@"%@ | %@",
-                                @"贊助",
-                                nativeAd.advertiser];
+
+    NSArray *nibObjects =
+    [[NSBundle mainBundle] loadNibNamed:@"UnifiedNativeAdView" owner:nil options:nil];
+    [self setAdView:[nibObjects firstObject]];
+
+    ((UIImageView *)self.nativeAdView.iconView).image = nativeAd.icon.image;
+    ((UILabel *)self.nativeAdView.headlineView).text = nativeAd.headline;
+    ((UILabel *)self.nativeAdView.bodyView).text = nativeAd.body;
+    ((UILabel *)self.nativeAdView.advertiserView).text = nativeAd.advertiser;
+    self.nativeAdView.nativeAd = nativeAd;
+
+    [self addSubview:self.nativeAdView];
 }
+
+// GoogleMobileAds version 8 above
+- (void)setGADNativeAdData:(GADNativeAd *)nativeAd {
+    
+    NSArray *nibObjects =
+    [[NSBundle mainBundle] loadNibNamed:@"UnifiedNativeAdView" owner:nil options:nil];
+    [self setAdView:[nibObjects firstObject]];
+
+    ((UIImageView *)self.nativeAdView.iconView).image = nativeAd.icon.image;
+    ((UILabel *)self.nativeAdView.headlineView).text = nativeAd.headline;
+    ((UILabel *)self.nativeAdView.bodyView).text = nativeAd.body;
+    ((UILabel *)self.nativeAdView.advertiserView).text = nativeAd.advertiser;
+    self.nativeAdView.nativeAd = nativeAd;
+
+    [self addSubview:self.nativeAdView];
+}
+
+
+// Common Method
+- (void)setAdView:(GADUnifiedNativeAdView *)view {
+    // Remove previous ad view.
+    [self.nativeAdView removeFromSuperview];
+    self.nativeAdView = view;
+
+    // Add new ad view and set constraints to fill its container.
+    [self addSubview:view];
+    [self.nativeAdView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_nativeAdView);
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_nativeAdView]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:viewDictionary]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_nativeAdView]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:viewDictionary]];
+}
+
 ```
 
 
 
-File: TrekNativeAdTableViewCell.xib
+# File: TrekNativeAdTableViewCell.xib
 
-![TrekNativeAdTableViewCell](https://github.com/aotter/trek-sdk-docs/wiki/GoogleAdMobMediationSuprAD/TrekNativeAdTableViewCell.png)
+![TrekNativeAdTableViewCell](https://user-images.githubusercontent.com/46350143/109943071-c2233200-7d0f-11eb-894f-2ccd4ff701ee.png)
 
 File: TrekSuprAdTableViewCell.h
 
@@ -111,7 +183,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TrekSuprAdTableViewCell : UITableViewCell
 
+// Note: The declaration method depends on the SDK version
+// GoogleMobileAds version 8 below
 - (void)setGADUnifiedNativeAdData:(GADUnifiedNativeAd *)nativeAd withViewSize:(CGSize)size;
+
+// GoogleMobileAds version 8 above
+- (void)setGADNativeAdData:(GADNativeAd *)nativeAd withViewSize:(CGSize)size;
 
 @end
 
@@ -126,8 +203,11 @@ NS_ASSUME_NONNULL_END
 File: TrekSuprAdTableViewCell.m
 
 ```objective-c
+// The implementation method depends on the SDK version
+
 // Google Mediation SuprAD
 
+// GoogleMobileAds version 8 below
 - (void)setGADUnifiedNativeAdData:(GADUnifiedNativeAd *)nativeAd withViewSize:(CGSize)size {
     
     // Clear contentView subviews
@@ -137,6 +217,30 @@ File: TrekSuprAdTableViewCell.m
     
     //self.contentView.backgroundColor = [UIColor redColor];
     
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    GADMediaView *gADMediaView = [[GADMediaView alloc]initWithFrame:rect];
+    gADMediaView.mediaContent = nativeAd.mediaContent;
+    [self.contentView addSubview:gADMediaView];
+
+    [gADMediaView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    [gADMediaView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [gADMediaView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor].active = YES;
+    [gADMediaView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor].active = YES;
+    [gADMediaView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor].active = YES;
+    [gADMediaView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor].active = YES;
+}
+
+
+// GoogleMobileAds version 8 above
+- (void)setGADNativeAdData:(GADNativeAd *)nativeAd withViewSize:(CGSize)size {
+    
+    for (UIView *subView in self.contentView.subviews) {
+        [subView removeFromSuperview];
+    }
+
+    //self.contentView.backgroundColor = [UIColor redColor];
+
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     GADMediaView *gADMediaView = [[GADMediaView alloc]initWithFrame:rect];
     gADMediaView.mediaContent = nativeAd.mediaContent;
@@ -172,12 +276,19 @@ static NSInteger googleMediationSuprAdPosition = 6;
 .
 .
 
+// GoogleMobileAds version 8 above, the delegate is "GADNativeAdLoaderDelegate"
+// GoogleMobileAds version 8 below, the delegate is "GADUnifiedNativeAdLoaderDelegate"
+  
 @interface YourViewController ()<GADUnifiedNativeAdLoaderDelegate, UITableViewDataSource, UITableViewDelegate> {
+  
 		// For NativeAd
-    GADUnifiedNativeAd *_gADUnifiedNativeAd; 
-    
+    GADUnifiedNativeAd *_gADUnifiedNativeAd;  // GoogleMobileAds version 8 below
+    GADNativeAd *_gADUnifiedNativeAd;					// GoogleMobileAds version 8 above
+
     // For SuprAd
-    GADUnifiedNativeAd *_gADUnifiedSuprAd;
+    GADUnifiedNativeAd *_gADUnifiedSuprAd;	  // GoogleMobileAds version 8 below
+    GADNativeAd *_gADUnifiedSuprAd;						// GoogleMobileAds version 8 above
+  
     CGFloat _viewWidth;
     CGFloat _viewHeight;
 }
@@ -212,9 +323,16 @@ static NSInteger googleMediationSuprAdPosition = 6;
 
 - (void)setupGADAdLoader {
     
+    // GoogleMobileAds version 8 below
     self.adLoader = [[GADAdLoader alloc]initWithAdUnitID: @"<your adUnit Id>"
                                       rootViewController: self
                                                  adTypes: @[kGADAdLoaderAdTypeUnifiedNative]
+                                                 options: @[]];
+  
+    // GoogleMobileAds version 8 above
+    self.adLoader = [[GADAdLoader alloc]initWithAdUnitID: @"<your adUnit Id>"
+                                      rootViewController: self
+                                                 adTypes: @[kGADAdLoaderAdTypeNative]
                                                  options: @[]];
     
     self.adLoader.delegate = self;
@@ -242,7 +360,13 @@ static NSInteger googleMediationSuprAdPosition = 6;
     if (indexPath.row == googleMediationNativeAdPosition) {
         if (_gADUnifiedNativeAd != nil) {
             TrekNativeAdTableViewCell *trekNativeAdTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"TrekNativeAdTableViewCell" forIndexPath:indexPath];
+          
+            // GoogleMobileAds version 8 below
             [trekNativeAdTableViewCell setGADUnifiedNativeAdData:_gADUnifiedNativeAd];
+          
+            // GoogleMobileAds version 8 above
+            [trekNativeAdTableViewCell setGADNativeAdData:_gADUnifiedNativeAd];
+          
             return trekNativeAdTableViewCell;
         }
     }
@@ -253,7 +377,13 @@ static NSInteger googleMediationSuprAdPosition = 6;
             TrekSuprAdTableViewCell *trekSuprAdTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"TrekSuprAdTableViewCell" forIndexPath:indexPath];
             
             CGSize size = CGSizeMake(_viewWidth, _viewHeight);
+            
+          	// GoogleMobileAds version 8 below
             [trekSuprAdTableViewCell setGADUnifiedNativeAdData:_gADUnifiedSuprAd withViewSize:size];
+          
+          	// GoogleMobileAds version 8 above
+            [trekSuprAdTableViewCell setGADNativeAdData:_gADUnifiedSuprAd withViewSize:size];
+          
             return trekSuprAdTableViewCell;
         }
     }
@@ -276,8 +406,13 @@ static NSInteger googleMediationSuprAdPosition = 6;
     if (indexPath.row == googleMediationSuprAdPosition) {
         return _gADUnifiedSuprAd == nil ? 0:_viewHeight;
     }
+  
     return 80;
 }
+
+
+
+// GoogleMobileAds version 8 below
 
 #pragma mark - GADUnifiedNativeAdLoaderDelegate
 
@@ -305,6 +440,38 @@ static NSInteger googleMediationSuprAdPosition = 6;
 - (void)adLoader:(nonnull GADAdLoader *)adLoader didFailToReceiveAdWithError:(nonnull GADRequestError *)error {
     NSLog(@"Error Message:%@",error.description);
 }
+
+
+
+// GoogleMobileAds version 8 above
+
+#pragma mark - GADNativeAdLoaderDelegate
+
+- (void)adLoader:(GADAdLoader *)adLoader didReceiveNativeAd:(GADNativeAd *)nativeAd {
+    
+    // Delegate 回來的 nativeAd 已經可以接取到自己的 Custom Ad View，
+    // 這部分可以將 nativeAd 放到 CustomTableViewCell 去接資料
+
+    if (nativeAd != nil) {
+
+        if ([[nativeAd.extraAssets allKeys]containsObject:@"trekAd"]) {
+            NSString *key = nativeAd.extraAssets[@"trekAd"];
+
+            if ([key isEqualToString:@"nativeAd"]) {
+                _gADUnifiedNativeAd = nativeAd;
+            }else if ([key isEqualToString:@"suprAd"]) {
+                _gADUnifiedSuprAd = nativeAd;
+            }
+        }
+    }
+
+    [self.adTableView reloadData];
+}
+
+- (void)adLoader:(GADAdLoader *)adLoader didFailToReceiveAdWithError:(NSError *)error {
+    NSLog(@"Error Message:%@",error.description);
+}
+
 
 @end
 ```
@@ -400,13 +567,55 @@ File: AotterTrekGADCustomEventNativeAd.m
 @end
 ```
 
+
+
+## Note :  
+
+**If you project base on Swift，and you have SuprAd needs**
+
+**Step1**. You need to write "#import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>" in the bridge file
+
+```
+#import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
+```
+
+
+
+**Step2.** Your CustomViewController will be modified as shown in the figure
+
+<img width="914" alt="CustomViewController" src="https://user-images.githubusercontent.com/46350143/109950474-812f1b80-7d17-11eb-802f-70fe3c4dfcc7.png">
+
+
+
+**Step3.** Find the **"AotterTrekGADCustomEventNativeAd.m"** file，please import the bridge file in order to call the CustomViewController delegate
+
+```
+#import "Your Bridge file Name-Swift.h"
+```
+
+
+
 ---
 
 ## Demo App:
 
 If you want to download Demo app, you need to configure GADApplicationIdentifier and Ad Unit in projects.
 
-Download: [AotterGoogleMediationAd.zip](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.3/AotterGoogleMediationAd.zip)
+If your project based on Objective-C，
+
+GoogleMobileAds version 8 below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Objc_GoogleMobileAds_version7.zip)
+
+GoogleMobileAds version 8 above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Objc_GoogleMobileAds_version8.zip)
+
+
+
+If your project based on Swift，
+
+GoogleMobileAds version 8 below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Swift_GoogleMobileAds_version7.zip)
+
+GoogleMobileAds version 8 above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Swift_GoogleMobileAds_version8.zip)
+
+
 
 File: ViewController.m
 
