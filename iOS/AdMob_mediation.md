@@ -3,7 +3,7 @@
 ## Step 1. prepare Custon Event file for AotterTrek
 
 follow the official Guide [here](https://developers.google.com/admob/ios/native/native-custom-events) (recommend)
-or just download the file and add files to your projects from "AotterTrek adMob mediation file" folder.
+or just download the file and add files to your projects from folder.
 
 If your project based on Objective-C，
 
@@ -63,13 +63,7 @@ File: AppDelegate.m
 
 Here we customize two TableViewCell: TrekNativeAdTableViewCell & TrekSuprAdTableViewCell
 
-Please depends on the GoogleMobileAds SDK version to download the NativeAd View file and add it to the project，
-
-Native ad view version 8 below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/UnifiedNativeAdView_version7.zip)
-
-Native ad view version 8 above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/UnifiedNativeAdView_version8.zip)
-
-Note: View Class depends on the GoogleMobileAds SDK version
+**Note:** View Class depends on the GoogleMobileAds SDK version
 
 ![UnifiedNativeAdView](https://user-images.githubusercontent.com/46350143/109942288-03671200-7d0f-11eb-8606-f5689a98ecec.png)
 
@@ -571,7 +565,7 @@ File: AotterTrekGADCustomEventNativeAd.m
 
 ## Note :  
 
-**If you project base on Swift，and you have SuprAd needs**
+**If you project based on Swift，and you have SuprAd needs**
 
 **Step1**. You need to write "#import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>" in the bridge file
 
@@ -593,7 +587,9 @@ File: AotterTrekGADCustomEventNativeAd.m
 #import "Your Bridge file Name-Swift.h"
 ```
 
+See the below，
 
+<img width="852" alt="bridge" src="https://user-images.githubusercontent.com/46350143/110062479-47f0bd00-7da4-11eb-9e3b-b0c86d30c27c.png">
 
 ---
 
