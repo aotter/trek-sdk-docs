@@ -44,7 +44,7 @@
 | advertiserName | String |                                        |
 | img_icon       | String | 82x82                                  |
 | img_icon_hd    | String | 300x300                                |
-| img_main       | String | 1200x627                               |
+| img_main       | String | 1200x628                              |
 | imgs           | Map    | custom images {label,src,width,height} |
 
 ## 3. ad fail delegates

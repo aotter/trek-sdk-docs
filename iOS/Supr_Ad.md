@@ -27,6 +27,8 @@ if(isVideoAd){
 } 
 
 //TKMediaView: the view for showing SuprAd's Media
+//It is recommended to create the size of the view based on ad size.
+//According to Ad Size to do a 16:9 ratio scaling.
 [self.suprAd registerTKMediaView:self.adCell.contentView];
 
 //AdView: the container view for ad
@@ -59,7 +61,7 @@ loadAd' right after regsiters, but it would take some time to show vidoe.
 | advertiserName | String |                                        |
 | img_icon       | String | 82x82                                  |
 | img_icon_hd    | String | 300x300                                |
-| img_main       | String | 1200x627                               |
+| img_main       | String | 1200x628                               |
 | imgs           | Map    | custom images {label,src,width,height} |
 
  
