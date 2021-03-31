@@ -1,7 +1,7 @@
 # Guide 
 
-- AotterTrek iOS SDK contains trackiing and native advertising service.
-- minion iOS version: 9.0
+- AotterTrek iOS SDK contains tracking and native advertising service.
+- Minimum iOS version: 9.0
 
 
 

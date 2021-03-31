@@ -474,7 +474,7 @@ static NSInteger googleMediationSuprAdPosition = 6;
 
 # Step 4. Additional Method for SuprAd (AdScrolled)
 
-The AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to to the position of the ad.
+The AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to the position of the ad.
 Therefore, you should add additional method in following:
 
 File: YourViewController.h (the ViewController that rendering the AdView)

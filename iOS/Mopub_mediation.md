@@ -18,7 +18,7 @@ download mediation-files  [here](https://github.com/aotter/AotterTrek-iOS-SDK/re
 
 ##### If you have SuprAd needs, please additional method for SuprAd (AdScrolled)
 
-The AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to to the position of the ad.
+The AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to the position of the ad.
 
 Therefore, you should add additional method in following:
 
