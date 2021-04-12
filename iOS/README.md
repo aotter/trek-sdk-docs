@@ -1,5 +1,7 @@
 # IOS
 
+- 2021/04/12 release `3.5.8`
+  - Support to Google IMA iOS SDK 3.13.0 version and below. If your project use Google IMA iOS SDK for other purposes，please keep the same version. 
 - 2021/02/08 release `3.5.7`
   - Add some logs.
 - 2021/01/18 release `3.5.6`
