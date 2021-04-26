@@ -5,24 +5,19 @@
 follow the official Guide [here](https://developers.google.com/admob/ios/native/native-custom-events) (recommend)
 or just download the file and add files to your projects from folder.
 
-If your project based on Objective-C，
+If your project based on Objective-C or Swift，
 
-Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Aotter_GoogleMediation_version7_project_Objc.zip)  with googleAds SDK version 8 below.
+Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Aotter_GoogleMediation_version7_project.zip)  with googleAds SDK version 8 below.
 
-Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Aotter_GoogleMediation_version8_project_Objc.zip)  with googleAds SDK version 8 above.
-
-If your project based on Swift，
-
-Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Aotter_GoogleMediation_version7_project_Swift.zip)  with googleAds SDK version 8 below.
-
-Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Aotter_GoogleMediation_version8_project_Swift.zip)  with googleAds SDK version 8 above.
-
-
+Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Aotter_GoogleMediation_version8_project.zip)  with googleAds SDK version 8 above.
 
 ##  Step 2. set adMob mediation in your adMob mediation group panel 
 
 Class Name: AotterTrekGADCustomEventNativeAd (or the file title you created)
-Parameter: {"adType":"nativeAd", "adPlace":"<your ad place>"}
+Parameter: {"adType":"**nativeAd**", "adPlace":"<your ad place>"} or {"adType":"**suprAd**", "adPlace":"<your ad place>"}
+
+The adType please fill in **nativeAd** or **suprAd**.
+
 ![AdMob Setting](https://user-images.githubusercontent.com/3615917/102583345-7fee4980-413f-11eb-9538-4304a18432db.png)
 
 
@@ -282,19 +277,13 @@ static NSInteger googleMediationSuprAdPosition = 6;
     // For SuprAd
     GADUnifiedNativeAd *_gADUnifiedSuprAd;	  // GoogleMobileAds version 8 below
     GADNativeAd *_gADUnifiedSuprAd;						// GoogleMobileAds version 8 above
-  
-    CGFloat _viewWidth;
-    CGFloat _viewHeight;
 }
 
 @implementation YourViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _viewWidth = UIScreen.mainScreen.bounds.size.width;
-    _viewHeight = _viewWidth * 9/16;
-    
+  
     [self setupTableVie];
     [self setupGADAdLoader];
 }
@@ -367,17 +356,31 @@ static NSInteger googleMediationSuprAdPosition = 6;
     
     // For SuprAd
     if (indexPath.row == googleMediationSuprAdPosition) {
-        if(_gADUnifiedSuprAd != nil) {
+      
+      if(_gADUnifiedSuprAd != nil) {
             TrekSuprAdTableViewCell *trekSuprAdTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"TrekSuprAdTableViewCell" forIndexPath:indexPath];
             
-            CGSize size = CGSizeMake(_viewWidth, _viewHeight);
+            if ([[_gADUnifiedSuprAd.extraAssets allKeys]containsObject:@"adSizeWidth"] &&
+                [[_gADUnifiedSuprAd.extraAssets allKeys]containsObject:@"adSizeHeight"]) {
+                
+                // get ad prefered AdSize
+                NSString *width = _gADUnifiedSuprAd.extraAssets[@"adSizeWidth"];
+                NSString *height = _gADUnifiedSuprAd.extraAssets[@"adSizeHeight"];
+                double adSizeWidth = [width doubleValue];
+                double adSizeHeight = [height doubleValue];
+
+                CGFloat viewWidth = UIScreen.mainScreen.bounds.size.width;
+                CGFloat viewHeight = viewWidth * adSizeHeight/adSizeWidth;
+                int adheight = (int)viewHeight;
+                CGSize preferedMediaViewSize = CGSizeMake(viewWidth, adheight);
+                
+                // GoogleMobileAds version 8 below
+            		[trekSuprAdTableViewCell setGADUnifiedNativeAdData:_gADUnifiedSuprAd withViewSize:size];
+          
+          			// GoogleMobileAds version 8 above
+            		[trekSuprAdTableViewCell setGADNativeAdData:_gADUnifiedSuprAd withViewSize:size];
+            }
             
-          	// GoogleMobileAds version 8 below
-            [trekSuprAdTableViewCell setGADUnifiedNativeAdData:_gADUnifiedSuprAd withViewSize:size];
-          
-          	// GoogleMobileAds version 8 above
-            [trekSuprAdTableViewCell setGADNativeAdData:_gADUnifiedSuprAd withViewSize:size];
-          
             return trekSuprAdTableViewCell;
         }
     }
@@ -398,7 +401,21 @@ static NSInteger googleMediationSuprAdPosition = 6;
     
     // For SuprAd
     if (indexPath.row == googleMediationSuprAdPosition) {
-        return _gADUnifiedSuprAd == nil ? 0:_viewHeight;
+        
+        if ([[_gADUnifiedSuprAd.extraAssets allKeys]containsObject:@"adSizeWidth"] &&
+            [[_gADUnifiedSuprAd.extraAssets allKeys]containsObject:@"adSizeHeight"]) {
+            
+            // get ad prefered AdSize
+            NSString *width = _gADUnifiedSuprAd.extraAssets[@"adSizeWidth"];
+            NSString *height = _gADUnifiedSuprAd.extraAssets[@"adSizeHeight"];
+            double adSizeWidth = [width doubleValue];
+            double adSizeHeight = [height doubleValue];
+
+            CGFloat viewWidth = UIScreen.mainScreen.bounds.size.width;
+            CGFloat viewHeight = viewWidth * adSizeHeight/adSizeWidth;
+            
+            return _gADUnifiedSuprAd == nil ? 0:viewHeight;
+        }
     }
   
     return 80;
@@ -449,9 +466,9 @@ static NSInteger googleMediationSuprAdPosition = 6;
     if (nativeAd != nil) {
 
         if ([[nativeAd.extraAssets allKeys]containsObject:@"trekAd"]) {
-            NSString *key = nativeAd.extraAssets[@"trekAd"];
+            NSString *adType = nativeAd.extraAssets[@"trekAd"];
 
-            if ([key isEqualToString:@"nativeAd"]) {
+            if ([adType isEqualToString:@"nativeAd"]) {
                 _gADUnifiedNativeAd = nativeAd;
             }else if ([key isEqualToString:@"suprAd"]) {
                 _gADUnifiedSuprAd = nativeAd;
@@ -470,32 +487,10 @@ static NSInteger googleMediationSuprAdPosition = 6;
 @end
 ```
 
-
-
 # Step 4. Additional Method for SuprAd (AdScrolled)
 
 The AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to the position of the ad.
 Therefore, you should add additional method in following:
-
-File: YourViewController.h (the ViewController that rendering the AdView)
-
-```objective-c
-#import <UIKit/UIKit.h>
-
-@protocol YourViewControllerDelegate <NSObject>
-
-- (void)rootViewControllerScrollViewDidScroll:(UIScrollView *)scrollView;
-
-@end
-
-@interface YourViewController : UIViewController
-
-@property (weak, nonatomic) IBOutlet UITableView *adTableView;
-
-@property id<YourViewControllerDelegate> delegate;
-
-@end
-```
 
 
 
@@ -505,60 +500,14 @@ File: ViewController.m (Can use your Custom ViewController)
 #pragma mark : ScrlloView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-		if (_gADUnifiedSuprAd != nil) {
-        [self.delegate rootViewControllerScrollViewDidScroll:scrollView];
+    if (_gADUnifiedSuprAd != nil) {
+      
+        // The postNotificationName please fill in "SuprAdScrolled"
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"SuprAdScrolled"
+                                                           object:self
+                                                         userInfo:nil];
     }
 }
-```
-
-
-
-### CustomViewController need to modify your ViewController class.
-
-File: AotterTrekGADCustomEventNativeAd.m
-
-```objective-c
-@interface AotterTrekGADCustomEventNativeAd()<ViewControllerDelegate> {
-
-		// 部分參數忽略
-		.
-		.
-		.
-		
-    // CustomViewController 隨著自己定義的 ViewController 來決定
-    // EX: SomeViewController (Your Custom ViewController)
-    // declared: SomeViewController *_customViewController;
-    YourViewController *_customViewController;
-}
-
-
-@implementation AotterTrekGADCustomEventNativeAd
-
-- (void)requestNativeAdWithParameter:(NSString *)serverParameter request:(GADCustomEventRequest *)request adTypes:(NSArray *)adTypes options:(NSArray *)options rootViewController:(UIViewController *)rootViewController {
-    
-    // Handle rootViewController delegate, need to transfer your custom ViewController
-    // EX:
-    // _customViewController = (SomeViewController *) rootViewController;
-    // This delegate is your rootViewController delegate
-    
-    _customViewController = (ViewController *) rootViewController;
-    _customViewController.delegate = self;
-    
-    // 部分程式忽略
-    .
-    .
-    .
-}
-
-#pragma mark - ViewControllerDelegate (CustomViewController Scroll Delegate)
-
-- (void)rootViewControllerScrollViewDidScroll:(UIScrollView *)scrollView {
-    if (_suprAd != nil) {
-        [_suprAd notifyAdScrolled];
-    }
-}
-
-@end
 ```
 
 
@@ -573,24 +522,6 @@ File: AotterTrekGADCustomEventNativeAd.m
 #import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
 ```
 
-
-
-**Step2.** Your CustomViewController will be modified as shown in the figure
-
-<img width="914" alt="CustomViewController" src="https://user-images.githubusercontent.com/46350143/109950474-812f1b80-7d17-11eb-802f-70fe3c4dfcc7.png">
-
-
-
-**Step3.** Find the **"AotterTrekGADCustomEventNativeAd.m"** file，please import the bridge file in order to call the CustomViewController delegate
-
-```
-#import "Your Bridge file Name-Swift.h"
-```
-
-See the below，
-
-<img width="852" alt="bridge" src="https://user-images.githubusercontent.com/46350143/110062479-47f0bd00-7da4-11eb-9e3b-b0c86d30c27c.png">
-
 ---
 
 ## Demo App:
@@ -599,21 +530,21 @@ If you want to download Demo app, you need to configure GADApplicationIdentifier
 
 If your project based on Objective-C，
 
-GoogleMobileAds version 8 below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Objc_GoogleMobileAds_version7.zip)
+GoogleMobileAds version 8 below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Objc_GoogleMobileAds_version7.zip)
 
-GoogleMobileAds version 8 above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Objc_GoogleMobileAds_version8.zip)
+GoogleMobileAds version 8 above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Objc_GoogleMobileAds_version8.zip)
 
 
 
 If your project based on Swift，
 
-GoogleMobileAds version 8 below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Swift_GoogleMobileAds_version7.zip)
+GoogleMobileAds version 8 below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Swift_GoogleMobileAds_version7.zip)
 
-GoogleMobileAds version 8 above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/Swift_GoogleMobileAds_version8.zip)
+GoogleMobileAds version 8 above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Swift_GoogleMobileAds_version8.zip)
 
 
 
-File: ViewController.m
+File: YourViewController.m
 
 ![Ad Unit](https://github.com/aotter/trek-sdk-docs/wiki/GoogleAdMobMediationSuprAD/GoogleMediationDemoAppViewController.png)
 
