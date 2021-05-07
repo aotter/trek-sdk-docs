@@ -21,7 +21,7 @@
 
 進入列表後，您會發現在廣告開通狀態欄中多了**版位管理** (僅限已開通狀態)。
 
-<img width="1417" alt="應用程式列表" src="https://user-images.githubusercontent.com/48562635/117420133-db36a200-af4f-11eb-8109-bad214db0999.png">
+![kIGd6ftN](https://user-images.githubusercontent.com/48562635/117430534-d1ff0280-af5a-11eb-814e-77c9238f6d0d.jpeg)
 
 
 
