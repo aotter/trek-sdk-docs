@@ -1,6 +1,7 @@
 <!-- docs/_sidebar.md -->
 
 * [Home](/)
+* [Ad Slot Management](/Ad_Slot_Management/)
 * [Android](/Android/)
     * [Install SDK](/Android/Install_SDK)
 	* [User Setting](/Android/User_Setting)
@@ -24,7 +25,6 @@
 	* [MyApp Ads Intergration](/iOS/MyApp_ads_intergration)
 	* [Tracker](/iOS/Tracker)
 	* [Prepare for iOS14](/iOS/Prepare_for_iOS14)
-	
 * [Web](/Web/)
 	* [Getting Started](/Web/GettingStarted)
 	* [Install SDK](/Web/Install_SDK)
