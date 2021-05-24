@@ -27,8 +27,15 @@ self.suprAd.delegate = self;
 	} 
 
 	//TKMediaView: the view for showing SuprAd's Media
-	//It is recommended to create the size of the view based on ad size.
-	//According to Ad Size to do a 16:9 ratio scaling.
+  //It is recommended to create the size of the view based on ad size.
+  // EX: 「 I hope my ad view width is Screen width，now I use the "preferedMediaViewSize" calculate my ad view Height 」
+  // double adSizeWidth = preferedAdSize.width;
+  // double adSizeHeight = preferedAdSize.height;      
+  // CGFloat viewWidth = UIScreen.mainScreen.bounds.size.width;
+  // CGFloat viewHeight = viewWidth * adSizeHeight/adSizeWidth;
+  // int adheight = (int)viewHeight; // This result is the ad height I wanted.
+  
+
 	[self.suprAd registerTKMediaView:self.adCell.contentView];
 
 	//AdView: the container view for ad
