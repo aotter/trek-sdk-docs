@@ -140,5 +140,5 @@ Enter the slot management of [Application List](https://trek.aotter.net/publishe
 }
 ```
 
-Github: [Banner Sample](https://github.com/aotter/AotterTrek-iOS-SDK/blob/master/AotterTrekSample/DemoBannerAdViewController.m)
+Github: [Banner Sample](https://github.com/aotter/AotterTrek-iOS-SDK/blob/master/AotterTrekSample/ViewController/DemoBannerAdViewController/DemoBannerAdViewController.m)
 
