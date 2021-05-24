@@ -22,24 +22,24 @@ self.suprAd.delegate = self;
 
 ```objective-c
 -(void)TKAdSuprAd:(TKAdSuprAd *)suprAd didReceivedAdWithAdData:(NSDictionary *)adData preferedMediaViewSize:(CGSize)size isVideoAd{
-if(isVideoAd){
-   //when this suprAd is video type.
-} 
+	if(isVideoAd){
+   		//when this suprAd is video type.
+	} 
 
-//TKMediaView: the view for showing SuprAd's Media
-//It is recommended to create the size of the view based on ad size.
-//According to Ad Size to do a 16:9 ratio scaling.
-[self.suprAd registerTKMediaView:self.adCell.contentView];
+	//TKMediaView: the view for showing SuprAd's Media
+	//It is recommended to create the size of the view based on ad size.
+	//According to Ad Size to do a 16:9 ratio scaling.
+	[self.suprAd registerTKMediaView:self.adCell.contentView];
 
-//AdView: the container view for ad
-[self.suprAd registerAdView:self.adCell.contentView];
+	//AdView: the container view for ad
+	[self.suprAd registerAdView:self.adCell.contentView];
 
-//prefered size for the ad
-self.myAdSize = size;
+	//prefered size for the ad
+	self.myAdSize = size;
 
-NSString *title = adData[kTKAdTitleKey];
-NSString *contextText = adData[kTKAdTextKey];
-NSDictionary *images = adData[kTKAdImgsKey];
+	NSString *title = adData[kTKAdTitleKey];
+	NSString *contextText = adData[kTKAdTextKey];
+	NSDictionary *images = adData[kTKAdImgsKey];
 }
 ```
 
@@ -70,8 +70,8 @@ loadAd' right after regsiters, but it would take some time to show vidoe.
 
 ```objective-c
 -(void)TKAdSuprAdCompleted:(TKAdSuprAd *)suprAd{
-[self.adCell setNeedsLayout];
-[self.mainTableView reloadData];
+		[self.adCell setNeedsLayout];
+		[self.mainTableView reloadData];
 }
 ```
 
@@ -79,7 +79,7 @@ loadAd' right after regsiters, but it would take some time to show vidoe.
 
 ```objective-c
 -(void)TKAdSuprAd:(TKAdSuprAd *)suprAd adError:(TKAdError *)error{
-NSLog(@"SuprAd ad error: %@", error.description);
+		NSLog(@"SuprAd ad error: %@", error.description);
 }
 ```
 
@@ -104,10 +104,11 @@ such as -(void)scrollViewDidScroll:(UIScrollView *)scrollView;
 
 ```objective-c
 -(void)viewDidDisappear:(BOOL)animated{
-[super viewDidDisappear:animated];
-//destroy the ad completedly.
-//while TKAdSuprAd manage itself, destroy() is not necessary. But It's nice to have it when you pretty sure the view/view controller is not useds anymore.
-[self.suprAd destroy];
+		[super viewDidDisappear:animated];
+  
+		//destroy the ad completedly.
+		//while TKAdSuprAd manage itself, destroy() is not necessary. But It's nice to have it when you pretty sure the view/view controller is not useds anymore.
+		[self.suprAd destroy];
 }
 ```
 
