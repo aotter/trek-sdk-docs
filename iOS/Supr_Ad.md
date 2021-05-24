@@ -28,7 +28,8 @@ self.suprAd.delegate = self;
 
 	//TKMediaView: the view for showing SuprAd's Media
   //It is recommended to create the size of the view based on ad size.
-  // EX: 「 I hope my ad view width is Screen width，now I use the "preferedMediaViewSize" calculate my ad view Height 」
+  // EX: 「  If someone plan to use Screen width as Ad view width, "preferedMediaViewSize" is very recommended to calculate the corresponding Ad view height. 」
+  
   // double adSizeWidth = preferedAdSize.width;
   // double adSizeHeight = preferedAdSize.height;      
   // CGFloat viewWidth = UIScreen.mainScreen.bounds.size.width;

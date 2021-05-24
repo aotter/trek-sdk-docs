@@ -3,123 +3,16 @@
 ## 1. add mediation file to your project
 
 Support Mopub SDK 5.9.0 and below:
-download mediation-files [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/MoPub.Mediation_5.9.0_20210329.zip)
+download mediation-files [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/MoPub.Mediation_5.9.0.zip)
 
 Support Mopub SDK 5.10.0 and above: 
-download mediation-files  [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.7/MoPub.Mediation_5.10.0_20210329.zip)
+download mediation-files  [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/MoPub.Mediation_5.10.0.zip)
 
    - AotterTrekNativeAdapater
 
    - AotterTrekNativeCustomEvent
 
    - AotterTrekNativeAdRenderer
-
-     
-
-##### If you have SuprAd needs, please additional method for SuprAd (AdScrolled)
-
-The AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to the position of the ad.
-
-Therefore, you should add additional method in following:
-
-File: **YourViewController.h**
-
-```objective-c
-#import <UIKit/UIKit.h>
-
-@protocol YourViewControllerDelegate <NSObject>
-
-- (void)rootViewControllerScrollViewDidScroll:(UIScrollView *)scrollView;
-
-@end
-
-@interface YourViewController : UIViewController
-
-@property (weak, nonatomic) IBOutlet UITableView *adTableView;
-
-@property id<YourViewControllerDelegate> delegate;
-
-@end
-```
-
-
-
-File: **YourViewController.m** (Can use your Custom ViewController)
-
-```objective-c
-#pragma mark : ScrlloView delegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-		if (_yourSuprAd != nil) {
-        [self.delegate rootViewControllerScrollViewDidScroll:scrollView];
-    }
-}
-```
-
-
-
-### CustomViewController need to modify your ViewController class.
-
-File: **AotterTrekNativeCustomEvent.m**
-
-```objective-c
-//.m
-
-#import "YourViewController.h"
-
-@interface AotterTrekNativeCustomEvent() <TKAdNativeDelegate, TKAdSuprAdDelegate, YourViewControllerDelegate> {
-    // CustomViewController 隨著自己定義的 ViewController 來決定
-    // EX: SomeViewController (Your Custom ViewController)
-    // declared: SomeViewController *_customViewController;
-    YourViewController *_customViewController;
-}
-
-@property TKAdSuprAd *suprAd;
-@property AotterTrekNativeAdAdapter *adapter;
-
-@end
-
-@implementation AotterTrekNativeCustomEvent
-  
-#pragma mark - TKAdSuprAd delegates
-  
-- (void)TKAdSuprAd:(TKAdSuprAd *)suprAd didReceivedAdWithAdData:(NSDictionary *)adData preferedMediaViewSize:(CGSize)size isVideoAd:(BOOL)isVideoAd{
-    if(adData){
-        self.adapter = [[AotterTrekNativeAdAdapter alloc] initWithTKSuprAd:self.suprAd adProperties:nil];
-        
-        // Handle rootViewController delegate, need to transfer your custom ViewController
-        // EX:
-        // _customViewController = (SomeViewController *) rootViewController;
-        // This delegate is your rootViewController delegate
-        
-        _customViewController = (YourViewController *) [self.adapter topViewController];
-        _customViewController.delegate = self;
-        
-        // 部分程式忽略
-    	  .
-    		.
-    		.
-    }
-    else{
-        // 部分程式忽略
-    	  .
-    		.
-    		.
-    }
-}
-
-#pragma mark - YourViewControllerDelegate
-
-- (void)rootViewControllerScrollViewDidScroll:(UIScrollView *)scrollView {
-    if (_suprAd != nil) {
-        [_suprAd notifyAdScrolled];
-    }
-}
-
-@end
-
-```
-
 
 
 ## 2. set custom event class in your mopub netwrok dashboard.
@@ -403,23 +296,51 @@ File: **AotterTrekNativeCustomEvent.m**
    - reference: https://developers.mopub.com/publishers/ios/integrate-networks/#native-ad-set-up-your-ad-renderers
 
 ```objective-c
-MPStaticNativeAdRendererSettings *settings = [[MPStaticNativeAdRendererSettings alloc] init];
+// .m
 
-// Ex: MopubNativeAdRenderingView -> NativeAd UI class 
-// Ex: MopubSuprAdRenderingView -> SuprAd UI class
-settings.renderingViewClass = [MopubNativeAdRenderingView class];
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate> {
+  @property (strong, nonatomic) MPNativeAdRequest *adRequest;
+}
+.
+.
+.
+
+@implementation ViewController
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self configuareMoPubNativeAd];
+}
+
+// configuare MoPub request
+-(void) configuareMoPubNativeAd {
     
-MPNativeAdRendererConfiguration *config_trek = [AotterTrekNativeAdRenderer rendererConfigurationWithRendererSettings:settings];
+    NSString *nativeAdUnitId = @"your AdUnitId";
+    
+    MPStaticNativeAdRendererSettings *settings = [[MPStaticNativeAdRendererSettings alloc] init];
+    settings.renderingViewClass = [MopubNativeAdRenderingView class];
+    
+    settings.viewSizeHandler = ^(CGFloat maximumWidth) {
+        return CGSizeMake(maximumWidth, 103.0f);
+    };
   
-NSString *adUnitId = @"your AdUnitId";
-MPNativeAdRequest *adRequest = [MPNativeAdRequest requestWithAdUnitIdentifier:adUnitId
+    MPNativeAdRendererConfiguration *config_trek = [AotterTrekNativeAdRenderer rendererConfigurationWithRendererSettings:settings];
+  
+    _adRequest = [MPNativeAdRequest requestWithAdUnitIdentifier:nativeAdUnitId
                                                            rendererConfigurations:@[config_trek]];
-
-MPNativeAdRequestTargeting *targeting = [[MPNativeAdRequestTargeting alloc] init];
-    targeting.desiredAssets = [NSSet setWithObjects:kAdTitleKey, kAdTextKey, kAdMainImageKey, kAdIconImageKey, kAdCTATextKey, nil];
-    targeting.localExtras = @{@"ad category": @"some category Name"};
     
-    adRequest.targeting = targeting;
+
+    MPNativeAdRequestTargeting *targeting = [MPNativeAdRequestTargeting targeting];
+    targeting.desiredAssets = [NSSet setWithObjects:kAdTitleKey, kAdTextKey, kAdMainImageKey, kAdIconImageKey, kAdCTATextKey, nil];
+  	targeting.localExtras = @{@"ad category": @"some category Name"};
+    
+    _adRequest.targeting = targeting;
+  
+  //See the Step 6: sendMoPubRequest method  
+  [self sendMoPubRequest];
+}
+@end
+
 ```
 
 ## 6. Request ad and rendering view
@@ -428,11 +349,15 @@ MPNativeAdRequestTargeting *targeting = [[MPNativeAdRequestTargeting alloc] init
    - sample 
 
 ```objective-c
+// .m 
 
-    [adRequest startWithCompletionHandler:^(MPNativeAdRequest *request, MPNativeAd *response, NSError *error) {
-      MPNativeAd *mopubAd = response;
-      
-      UIView *nativeAdView = [response retrieveAdViewWithError:nil];
+// Send MoPub request
+-(void) sendMoPubRequest {
+  [_adRequest startWithCompletionHandler:^(MPNativeAdRequest *request, MPNativeAd *response, NSError *error) {
+        
+        MPNativeAd *mopubAd = response;
+        UIView *nativeAdView = [response retrieveAdViewWithError:nil];
+    
       if(nativeAdView){
           UITableViewCell *adView = [[UITableViewCell alloc] init];
           [adView.contentView addSubview:nativeAdView];
@@ -447,5 +372,29 @@ MPNativeAdRequestTargeting *targeting = [[MPNativeAdRequestTargeting alloc] init
         // Refresh UI
         ["Your TableView or CollectionView" reloadData];
       }
-  }];
+    }];
+}
+```
+
+
+
+## 7. Additional Method for SuprAd (AdScrolled)
+
+**If you have need SuprAd needs**, the AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to the position of the ad. Therefore, you should add additional method in following:
+
+```objective-c
+//.m
+
+#pragma mark : ScrlloView delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+		// The _mopubAd type is "MPNativeAd"
+    if (_mopubAd != nil) {
+      
+        // The postNotificationName please fill in "SuprAdScrolled"
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"SuprAdScrolled"
+                                                           object:self
+                                                         userInfo:nil];
+    }
+}
 ```
