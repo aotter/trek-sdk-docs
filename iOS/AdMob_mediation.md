@@ -7,9 +7,11 @@ or just download the file and add files to your projects from folder.
 
 If your project based on Objective-C or Swift，
 
-Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Aotter_GoogleMediation_version7_project.zip)  with googleAds SDK version 8 below.
+Download Mediation file: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Aotter_GoogleMediation_version8_project.zip)  with googleAds SDK version 8 and above.
 
-Download: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Aotter_GoogleMediation_version8_project.zip)  with googleAds SDK version 8 above.
+Download Mediation file: [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Aotter_GoogleMediation_version7_project.zip)  with googleAds SDK version 7 and below.
+
+
 
 ##  Step 2. set adMob mediation in your adMob mediation group panel 
 
@@ -62,7 +64,9 @@ Here we customize two TableViewCell: TrekNativeAdTableViewCell & TrekSuprAdTable
 
 ![UnifiedNativeAdView](https://user-images.githubusercontent.com/46350143/109942288-03671200-7d0f-11eb-8606-f5689a98ecec.png)
 
+------
 
+### Native Ad
 
 File: TrekNativeAdTableViewCell.h
 
@@ -160,6 +164,10 @@ File: TrekNativeAdTableViewCell.m
 # File: TrekNativeAdTableViewCell.xib
 
 ![TrekNativeAdTableViewCell](https://user-images.githubusercontent.com/46350143/109943071-c2233200-7d0f-11eb-894f-2ccd4ff701ee.png)
+
+------
+
+### Supr Ad
 
 File: TrekSuprAdTableViewCell.h
 
@@ -487,12 +495,133 @@ static NSInteger googleMediationSuprAdPosition = 6;
 @end
 ```
 
+------
+
+### Banner Ad
+
+```objective-c
+// Ex: SuprAdBannerViewController.m
+
+
+#import "SuprAdBannerViewController.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
+#import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
+
+static NSString *const BannerID = @"Your Ad Unit";
+
+@interface SuprAdBannerViewController ()<GADNativeAdLoaderDelegate>
+@property (atomic, strong) GADAdLoader *adLoader;
+@property (nonatomic, strong) GADNativeAd *gADUnifiedSuprAd_BottomBanner;
+@property (nonatomic, strong) UIView *suprAdBackgroundView;
+@end
+
+@implementation SuprAdBannerViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self setupGADAdLoader];
+}
+
+#pragma mark : Setup GADAdLoader
+
+- (void)setupGADAdLoader {
+
+    self.adLoader = [[GADAdLoader alloc]initWithAdUnitID: BannerID
+                                      rootViewController: self
+                                                 adTypes: @[kGADAdLoaderAdTypeNative]
+                                                 options: @[]];
+    
+    self.adLoader.delegate = self;
+
+    [self adLoaderLoadRequest];
+}
+
+- (void)adLoaderLoadRequest {
+    [self.adLoader loadRequest:[GADRequest request]];
+}
+
+#pragma mark - GADUnifiedNativeAdLoaderDelegate
+
+- (void)adLoader:(GADAdLoader *)adLoader didReceiveNativeAd:(GADNativeAd *)nativeAd {
+
+    if (nativeAd != nil) {
+
+        if ([[nativeAd.extraAssets allKeys]containsObject:@"trekAd"]) {
+            NSString *adType = nativeAd.extraAssets[@"trekAd"];
+            
+            if ([adType isEqualToString:@"suprAd"]) {
+                // Get nativeAd
+                _gADUnifiedSuprAd_BottomBanner = nativeAd;
+                
+                
+                // Setup Banner UI
+                if ([[_gADUnifiedSuprAd_BottomBanner.extraAssets allKeys]containsObject:@"adSizeWidth"] &&
+                    [[_gADUnifiedSuprAd_BottomBanner.extraAssets allKeys]containsObject:@"adSizeHeight"]) {
+                    
+                    // get ad prefered AdSize
+                    NSString *width = _gADUnifiedSuprAd_BottomBanner.extraAssets[@"adSizeWidth"];
+                    NSString *height = _gADUnifiedSuprAd_BottomBanner.extraAssets[@"adSizeHeight"];
+                    double adSizeWidth = [width doubleValue];
+                    double adSizeHeight = [height doubleValue];
+                    
+                    CGFloat viewWidth = UIScreen.mainScreen.bounds.size.width;
+                    CGFloat viewHeight = viewWidth * adSizeHeight/adSizeWidth;
+                    int adheight = (int)viewHeight;
+                    CGSize preferedMediaViewSize = CGSizeMake(viewWidth, adheight);
+                    
+                    [self setupSuprAdBackgroundView:_gADUnifiedSuprAd_BottomBanner preferedMediaViewSize:preferedMediaViewSize];
+                }
+            }
+        }
+    }
+}
+
+- (void)adLoader:(GADAdLoader *)adLoader didFailToReceiveAdWithError:(NSError *)error {
+    NSLog(@"Error Message:%@",error.description);
+}
+
+
+#pragma mark - Private Method
+
+- (void)setupSuprAdBackgroundView:(GADNativeAd *)nativeAd preferedMediaViewSize:(CGSize)size {
+    
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    _suprAdBackgroundView = [[UIView alloc]initWithFrame:rect];
+    
+    [self.view addSubview:_suprAdBackgroundView];
+    [_suprAdBackgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [_suprAdBackgroundView.heightAnchor constraintEqualToConstant:size.height].active = YES;
+    [_suprAdBackgroundView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
+    [_suprAdBackgroundView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:0].active = YES;
+    [_suprAdBackgroundView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:0].active = YES;
+    
+    
+    GADMediaView *gADMediaView = [[GADMediaView alloc]initWithFrame:CGRectZero];
+    gADMediaView.mediaContent = nativeAd.mediaContent;
+    [_suprAdBackgroundView addSubview:gADMediaView];
+
+    [gADMediaView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    [gADMediaView.topAnchor constraintEqualToAnchor:_suprAdBackgroundView.topAnchor constant:0].active = YES;
+    [gADMediaView.bottomAnchor constraintEqualToAnchor:_suprAdBackgroundView.bottomAnchor constant:0].active = YES;
+    [gADMediaView.leftAnchor constraintEqualToAnchor:_suprAdBackgroundView.leftAnchor constant:0].active = YES;
+    [gADMediaView.rightAnchor constraintEqualToAnchor:_suprAdBackgroundView.rightAnchor constant:0].active = YES;
+}
+
+@end
+
+
+
+```
+
+
+
 # Step 4. Additional Method for SuprAd (AdScrolled)
 
 The AotterTrek's SuprAd type ad need to be notified when the ad view is scrolled, in order to show some specfic view according to the position of the ad.
 Therefore, you should add additional method in following:
-
-
 
 File: ViewController.m (Can use your Custom ViewController)
 
@@ -530,17 +659,15 @@ If you want to download Demo app, you need to configure GADApplicationIdentifier
 
 If your project based on Objective-C，
 
-GoogleMobileAds version 8 below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Objc_GoogleMobileAds_version7.zip)
+GoogleMobileAds version 8 and above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Objc_GoogleMobileAds_version8.zip)
 
-GoogleMobileAds version 8 above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Objc_GoogleMobileAds_version8.zip)
-
-
+GoogleMobileAds version 7 and below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Objc_GoogleMobileAds_version7.zip)
 
 If your project based on Swift，
 
-GoogleMobileAds version 8 below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Swift_GoogleMobileAds_version7.zip)
+GoogleMobileAds version 8 and above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Swift_GoogleMobileAds_version8.zip)
 
-GoogleMobileAds version 8 above: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Swift_GoogleMobileAds_version8.zip)
+GoogleMobileAds version 7 and below: [Download](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.5.8/Swift_GoogleMobileAds_version7.zip)
 
 
 
