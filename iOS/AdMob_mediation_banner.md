@@ -172,6 +172,10 @@ GoogleMobileAds version 7 and below: [Sample project for v7](https://github.com/
 
 If you use sample project，please read the **README.md**
 
+[Sample project for v8 README](https://github.com/aotter/trek-ios-AdMobMediation_v8-sample/blob/main/README.md)
+
+[Sample project for v7 README](https://github.com/aotter/trek-ios-AdMobMediation_v7-sample/blob/main/README.md)
+
 
 
 File: YourViewController.m
