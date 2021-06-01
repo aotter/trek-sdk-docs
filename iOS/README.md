@@ -1,5 +1,8 @@
 # IOS
 
+- 2021/06/01 release `3.5.9`
+  - Support AdMob Mediation Banner Ad.
+  - Support install AdMob Mediation library for AotterTrek SDK，can use Cocoapods install "TrekSDKAdMobMediationObjc".
 - 2021/04/26 release `3.5.8`
   - Update AdMob mediation doc
   - Unify AdMob mediation file between Swift and Object-C
