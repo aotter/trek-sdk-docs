@@ -20,7 +20,7 @@
 	* [Supr Ad](/iOS/Supr_Ad)
 	* [Ad Manager Setting](/iOS/AdManager_Setting)
 	* [Mopub Mediation Guide](/iOS/Mopub_mediation)
-	* [AdMob Mediation Guide](/iOS/AdMob_mediation)
+	* [AdMob Mediation - Native](/iOS/AdMob_mediation)
 	* [AdMob Mediation - Banner](/iOS/AdMob_mediation_banner)
 	* [AotterTrek 3.x Migration Guide](/iOS/AotterTrek_3.0_migration_guide)
 	* [MyApp Ads Intergration](/iOS/MyApp_ads_intergration)
