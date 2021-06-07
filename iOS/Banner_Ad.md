@@ -20,8 +20,6 @@ Enter the slot management of [Application List](https://trek.aotter.net/publishe
 @interface ViewController () <TKAdSuprAdDelegate>
 {
     UIView *_suprAdView;
-    CGFloat _viewWidth;
-    CGFloat _viewHeight;
 }
 @property (nonatomic,strong) TKAdSuprAd *suprAd;
 @end
