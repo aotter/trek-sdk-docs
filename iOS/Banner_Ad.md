@@ -6,7 +6,7 @@ Enter the slot management of [Application List](https://trek.aotter.net/publishe
 
 ![](https://tkmedia-cache.aotter.net/cache/https%3A%2F%2Ftkmedia.aotter.net%2Fmedia%2F8ef1a669-a2fa-437a-8325-48d0b17a53a7.png)
 
-![](https://tkmedia-cache.aotter.net/cache/https%3A%2F%2Ftkmedia.aotter.net%2Fmedia%2F325c4158-d797-4de9-9b7f-9450499b8223.png)
+![iOS_BannerAd](https://user-images.githubusercontent.com/46350143/120261545-ac031e80-c2ca-11eb-878d-9d18ad4e33ee.png)
 
 
 
