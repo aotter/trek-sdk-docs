@@ -66,10 +66,7 @@ Enter the slot management of [Application List](https://trek.aotter.net/publishe
     
 	  //It is recommended to create the size of the view based on ad size.
     //prefered size for the ad，
-    _viewWidth = UIScreen.mainScreen.bounds.size.width;
-    _viewHeight = _viewWidth * size.height/size.width;
-    int height = (int)_viewHeight;
-    _suprAdView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _viewWidth, height)];
+    _suprAdView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
     //AdView: the container view for ad
     [self.suprAd registerAdView:_suprAdView];
@@ -79,8 +76,8 @@ Enter the slot management of [Application List](https://trek.aotter.net/publishe
     [self.view addSubview:_suprAdView];
     
     [_suprAdView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_suprAdView.widthAnchor constraintEqualToConstant:_viewWidth].active = YES;
-    [_suprAdView.heightAnchor constraintEqualToConstant:height].active = YES;
+    [_suprAdView.widthAnchor constraintEqualToConstant:size.width].active = YES;
+    [_suprAdView.heightAnchor constraintEqualToConstant:size.height].active = YES;
     [_suprAdView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
 }
 ```
