@@ -137,3 +137,15 @@ Enter the slot management of [Application List](https://trek.aotter.net/publishe
 
 Github: [Banner Sample](https://github.com/aotter/AotterTrek-iOS-SDK/blob/master/AotterTrekSample/ViewController/DemoBannerAdViewController/DemoBannerAdViewController.m)
 
+
+
+## Note :  
+
+- Supr.Ad including video ad advertising, which is using VAST technology provided by the Google IMA SDK. In the implementation of VAST, Trek SDK will need to register ViewController when request VAST ads from Google IMA. This ViewController should be the same ViewController that displays the video ads!
+
+  EX:
+
+  A viewController requests ads, A viewController displays ads (o)
+
+  A viewController requests ads, B viewController displays ads (x)
+

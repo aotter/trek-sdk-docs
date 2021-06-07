@@ -574,13 +574,21 @@ File: ViewController.m (Can use your Custom ViewController)
 
 ## Note :  
 
-**If you project based on Swift，and you have SuprAd needs**
+- **If you project based on Swift，and you have SuprAd needs**
 
 **Step1**. You need to write "#import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>" in the bridge file
 
-```
+```objective-c
 #import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
 ```
+
+- Supr.Ad including video ad advertising, which is using VAST technology provided by the Google IMA SDK. In the implementation of VAST, Trek SDK will need to register ViewController when request VAST ads from Google IMA. This ViewController should be the same ViewController that displays the video ads!
+
+  EX:
+
+  A viewController requests ads, A viewController displays ads (o)
+
+  A viewController requests ads, B viewController displays ads (x)
 
 ---
 
