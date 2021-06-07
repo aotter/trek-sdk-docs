@@ -26,6 +26,12 @@ If you have **Native Ad** needs, please follow the instructions implement
 
 The **adType** please fill in **nativeAd**，the **adPlace** please fill in your "**AotterTrek NativeAd adPlace**" .
 
+If you want to test, please use the test key & adPlace below，
+
+- CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
+- CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
+- adPlace: `native`
+
 <img width="853" alt="AdmMob CustomEvent_Native" src="https://user-images.githubusercontent.com/46350143/120260429-79582680-c2c8-11eb-91a9-d16571be9895.png">
 
 
@@ -37,6 +43,12 @@ If you have **SuprAd** needs, please follow the instructions implement
 #### Parameter:{"adType":"**suprAd**", "adPlace":"<your ad place>"}
 
 The **adType** please fill in **suprAd**，the **adPlace** please fill in your "**AotterTrek SuprAd adPlace**" .
+
+If you want to test, please use the test key & adPlace below，
+
+- CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
+- CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
+- adPlace: `suprad`
 
 <img width="853" alt="AdmMob CustomEvent_SuprAd" src="https://user-images.githubusercontent.com/46350143/120261477-8fff7d00-c2ca-11eb-9961-db8b6aca3093.png">
 

@@ -2,7 +2,7 @@
 
 ## 1. create SuprAd object
 ```objective-c
-self.suprAd = [[TKAdSuprAd alloc] initWithPlace:@"somewhere" category:@""];
+self.suprAd = [[TKAdSuprAd alloc] initWithPlace:@"suprad" category:@""];
 self.suprAd.delegate = self;
 
 //register view controller for presenting

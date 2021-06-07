@@ -18,6 +18,12 @@ Enter the slot management of [Application List](https://trek.aotter.net/publishe
 
 The **adType** please fill in **suprAd**，the **adPlace** please fill in your "**AotterTrek Banner adPlace**" .
 
+If you want to test, please use the test key & adPlace below，
+
+- CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
+- CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
+- adPlace: `banner`
+
 <img width="862" alt="AdmMob CustomEvent" src="https://user-images.githubusercontent.com/46350143/120164333-0baaec80-c22d-11eb-9192-220c7d03e513.png">
 
 

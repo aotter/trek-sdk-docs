@@ -4,7 +4,7 @@
 
 ```objective-c
  //initial ad with place and category
-   self.myAdNative = [TKAdNative alloc] initWithPlace:@"my_place" category:nil];
+   self.myAdNative = [TKAdNative alloc] initWithPlace:@"native" category:nil];
 
    //register current presenting view controller
    [self.myAdNative registerPresentingViewController:self];
@@ -80,5 +80,4 @@
     //will log impression
 }
 ```
-
 
