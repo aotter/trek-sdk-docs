@@ -12,8 +12,13 @@
 1. In .podfile
    ```
    //Podfile
-   pod 'AotterTrek-iOS-SDK', '~> 3.0'
+   pod 'AotterTrek-iOS-SDK', '3.5.9'
    ```
+   
+   Ref: [The Podfile](https://guides.cocoapods.org/using/the-podfile.html)
+   
+   
+   
 2. `pod install`
 
 ## Option 2.  manually
