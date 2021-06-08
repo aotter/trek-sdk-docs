@@ -12,6 +12,12 @@ Enter the slot management of [Application List](https://trek.aotter.net/publishe
 
 ## 2. create SuprAd object
 
+If you want to test, please use the test key & adPlace，see the below
+
+- CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
+- CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
+- adPlace: `banner`
+
 ```objective-c
 // .m
 

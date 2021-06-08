@@ -26,7 +26,7 @@ If you have **Native Ad** needs, please follow the instructions implement
 
 The **adType** please fill in **nativeAd**，the **adPlace** please fill in your "**AotterTrek NativeAd adPlace**" .
 
-If you want to test, please use the test key & adPlace below，
+If you want to test, please use the test key & adPlace，see the below
 
 - CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
@@ -44,7 +44,7 @@ If you have **SuprAd** needs, please follow the instructions implement
 
 The **adType** please fill in **suprAd**，the **adPlace** please fill in your "**AotterTrek SuprAd adPlace**" .
 
-If you want to test, please use the test key & adPlace below，
+If you want to test, please use the test key & adPlace，see the below
 
 - CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`

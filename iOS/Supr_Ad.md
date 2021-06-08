@@ -1,6 +1,23 @@
 # Supr Ad
 
-## 1. create SuprAd object
+## 1. Create Ad slot
+
+Enter the slot management of [Application List](https://trek.aotter.net/publisher/list/app) , create slot name and type.
+
+![](https://tkmedia-cache.aotter.net/cache/https%3A%2F%2Ftkmedia.aotter.net%2Fmedia%2F8ef1a669-a2fa-437a-8325-48d0b17a53a7.png)
+
+<img width="695" alt="suprad" src="https://user-images.githubusercontent.com/46350143/120260535-aad0f200-c2c8-11eb-861d-b17cc9b1b1d6.png">
+
+
+
+## 2. create SuprAd object
+
+If you want to test, please use the test key & adPlace，see the below
+
+- CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
+- CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
+- adPlace: `suprad`
+
 ```objective-c
 self.suprAd = [[TKAdSuprAd alloc] initWithPlace:@"suprad" category:@""];
 self.suprAd.delegate = self;
@@ -11,14 +28,14 @@ self.suprAd.delegate = self;
 
 
 
-## 2. fetch ad
+## 3. fetch ad
 ```objective-c
 [self.suprAd fetchAd];
 ```
 
 
 
-## 3. received Ad datat with prefered ad size, register for adView and TKMediaView
+## 4. received Ad datat with prefered ad size, register for adView and TKMediaView
 
 ```objective-c
 -(void)TKAdSuprAd:(TKAdSuprAd *)suprAd didReceivedAdWithAdData:(NSDictionary *)adData preferedMediaViewSize:(CGSize)size isVideoAd{
@@ -74,7 +91,7 @@ loadAd' right after regsiters, but it would take some time to show vidoe.
 
  
 
-## 4. Ad load completed, the ad is ready to show on screen
+## 5. Ad load completed, the ad is ready to show on screen
 
 ```objective-c
 -(void)TKAdSuprAdCompleted:(TKAdSuprAd *)suprAd{
@@ -83,7 +100,7 @@ loadAd' right after regsiters, but it would take some time to show vidoe.
 }
 ```
 
-## 5. Any error callback
+## 6. Any error callback
 
 ```objective-c
 -(void)TKAdSuprAd:(TKAdSuprAd *)suprAd adError:(TKAdError *)error{
@@ -91,7 +108,7 @@ loadAd' right after regsiters, but it would take some time to show vidoe.
 }
 ```
 
-## 6. Notify While Ad Scrolled
+## 7. Notify While Ad Scrolled
 
 if you render the ad in your scrollView/TableView/CollectionView or anything may have vertical scroll behavior, please call this fuction when the scrollView scrolled.
 
@@ -108,7 +125,7 @@ such as -(void)scrollViewDidScroll:(UIScrollView *)scrollView;
 
 
 
-## 7. Destroy ad 
+## 8. Destroy ad 
 
 ```objective-c
 -(void)viewDidDisappear:(BOOL)animated{
@@ -120,7 +137,7 @@ such as -(void)scrollViewDidScroll:(UIScrollView *)scrollView;
 }
 ```
 
-## 8. more functions 
+## 9. more functions 
 
 ### isExpired
 ```objective-c

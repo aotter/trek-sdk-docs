@@ -1,6 +1,22 @@
 # Native Ad
 
-## 1. create adNative object
+## 1. Create Ad slot
+
+Enter the slot management of [Application List](https://trek.aotter.net/publisher/list/app) , create slot name and type.
+
+![](https://tkmedia-cache.aotter.net/cache/https%3A%2F%2Ftkmedia.aotter.net%2Fmedia%2F8ef1a669-a2fa-437a-8325-48d0b17a53a7.png)
+
+<img width="699" alt="nativead" src="https://user-images.githubusercontent.com/46350143/120260531-aa385b80-c2c8-11eb-82c1-43eea92c726f.png">
+
+
+
+## 2. create adNative object
+
+If you want to test, please use the test key & adPlace，see the below
+
+- CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
+- CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
+- adPlace: `native`
 
 ```objective-c
  //initial ad with place and category
@@ -16,7 +32,7 @@
    [self.myAdNative fetchAd];
 ```
 
-## 2. render adNatvie UI object
+## 3. render adNatvie UI object
 
 ```objective-c
 -(void)TKAdNative:(TKAdNative *)ad didReceivedAdWithData:(NSDictionary *)adData{
@@ -47,7 +63,7 @@
 | img_main       | String | 1200x628                              |
 | imgs           | Map    | custom images {label,src,width,height} |
 
-## 3. ad fail delegates
+## 4. ad fail delegates
 
 ```objective-c
 -(void)TKAdNative:(TKAdNative *)ad fetchError:(TKAdError *)error{
@@ -55,14 +71,14 @@
 }
 ```
 
-## 4. remove and release
+## 5. remove and release
 
 ```objective-c
 //remove and release data
 [self.myAdNative destroy];
 ```
 
-## 5. more functions 
+## 6. more functions 
 
 ### isExpired
 ```objective-c
