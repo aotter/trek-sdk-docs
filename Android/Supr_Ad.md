@@ -1,5 +1,13 @@
 # Supr Ad
 
+## 建立版位
+
+進入 [應用程式列表](https://trek.aotter.net/publisher/list/app) 的版位管理，建立版位名稱和類型
+
+![Android](https://user-images.githubusercontent.com/48562635/121494446-55ed5400-ca0b-11eb-802b-fe90d2790603.jpg)
+
+<img width="695" alt="suprad" src="https://user-images.githubusercontent.com/48562635/121494650-8503c580-ca0b-11eb-94d1-e50f31310045.png">
+
 ```xml
 <LinearLayout
     android:id="@+id/ad_container"

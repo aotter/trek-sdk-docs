@@ -29,7 +29,7 @@
 
 我們分別提供了**三種廣告類型**以符合您的各種需求：**Supr.Ad**、**原生廣告**、**橫幅廣告**
 
-| <img src="https://user-images.githubusercontent.com/48562635/117421370-0f5e9280-af51-11eb-92e3-93ccbd6871ec.jpeg" alt="agU3epW9" style="zoom:100%;" /> | ![tmnh-Ptg](https://user-images.githubusercontent.com/48562635/117421482-243b2600-af51-11eb-8b45-d70549972d5f.png) |
+| <img src="https://user-images.githubusercontent.com/48562635/117421370-0f5e9280-af51-11eb-92e3-93ccbd6871ec.jpeg" alt="agU3epW9" style="zoom:100%;" /> | ![iOS_BannerAd](https://user-images.githubusercontent.com/48562635/121494234-22122e80-ca0b-11eb-801d-41f8082ab76a.png) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 
 ✨需要您特別注意的是，此**廣告版位名稱**需要與您在**應用程式中廣告請求的版位名稱(place name)**一致

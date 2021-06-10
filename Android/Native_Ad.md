@@ -1,5 +1,13 @@
 # Native Ad
 
+## 建立版位
+
+進入 [應用程式列表](https://trek.aotter.net/publisher/list/app) 的版位管理，建立版位名稱和類型
+
+![Android](https://user-images.githubusercontent.com/48562635/121494446-55ed5400-ca0b-11eb-802b-fe90d2790603.jpg)
+
+<img width="699" alt="nativead" src="https://user-images.githubusercontent.com/48562635/121494559-6f8e9b80-ca0b-11eb-953e-c9e95c14c1a6.png">
+
 ```java
 @Bind(R.id.native_ad_container)
 LinearLayout mNative_ad_container;
