@@ -1,5 +1,7 @@
 # IOS
 
+- 2021/06/11 release `3.6.0`
+  - fixbug: suprAd video ads background thread crash.
 - 2021/06/01 release `3.5.9`
   - Support AdMob Mediation Banner Ad.
   - Support install AdMob Mediation library for AotterTrek SDK，can use Cocoapods install "TrekSDKAdMobMediationObjc".
