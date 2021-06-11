@@ -29,7 +29,7 @@
 
 我們分別提供了**三種廣告類型**以符合您的各種需求：**Supr.Ad**、**原生廣告**、**橫幅廣告**
 
-| <img src="https://user-images.githubusercontent.com/48562635/117421370-0f5e9280-af51-11eb-92e3-93ccbd6871ec.jpeg" alt="agU3epW9" style="zoom:100%;" /> | ![iOS_BannerAd](https://user-images.githubusercontent.com/48562635/121494234-22122e80-ca0b-11eb-801d-41f8082ab76a.png) |
+| ![UUID空](https://user-images.githubusercontent.com/48562635/121643653-a2e13100-cac4-11eb-9f61-58298d4cc006.jpg) | ![iOS_BannerAd](https://user-images.githubusercontent.com/48562635/121494234-22122e80-ca0b-11eb-801d-41f8082ab76a.png) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 
 ✨需要您特別注意的是，此**廣告版位名稱**需要與您在**應用程式中廣告請求的版位名稱(place name)**一致
@@ -64,5 +64,5 @@
 
 如果您有建立新廣告版位的需求，一樣可以點選右上角的 ✚ 新增版位。
 
-![WKTvJdsE](https://user-images.githubusercontent.com/48562635/117423408-47ff6b80-af53-11eb-9be7-e0aef1bf5d48.jpeg)
+<img width="1165" alt="UUID 現有版位" src="https://user-images.githubusercontent.com/48562635/121643715-b8eef180-cac4-11eb-8c4f-fe08d46fe403.png">
 
