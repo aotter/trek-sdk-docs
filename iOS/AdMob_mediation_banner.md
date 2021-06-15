@@ -22,11 +22,17 @@ If you want to test, please use the test key & adPlace，see the below
 
 - CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
-- adPlace: `banner`
+- Ad Place UUID: `669bad6a-27ec-487a-a583-7b5305732ff7`
 
-<img width="862" alt="AdmMob CustomEvent" src="https://user-images.githubusercontent.com/46350143/120164333-0baaec80-c22d-11eb-9192-220c7d03e513.png">
+<img width="862" alt="Admob_banner" src="https://user-images.githubusercontent.com/46350143/121989338-8d268100-cdce-11eb-9908-5d6247fe2bdf.png">
 
+##### Note:
 
+Please **use your own** Client ID and Secret as well as UUID for production environment. Once you finishing this setting, you can switch **production / test mode** by changing **your client id and test client id.**
+
+- CLIENT_ID : "YOUR CLIENT ID"
+- CLIENT_SECRET : "YOUR CLIENT SECRET "
+- Ad Place UUID: "YOUR ADPLACE UUID"
 
 ## Step 3. Install AdMob Mediation library in you project
 
@@ -165,14 +171,6 @@ static NSString *const BannerAdUnit = @"Your AdMob banner ad unit";
 ```objective-c
 #import <AotterTrek-iOS-SDK/AotterTrek-iOS-SDK.h>
 ```
-
-- Supr.Ad including video ad advertising, which is using VAST technology provided by the Google IMA SDK. In the implementation of VAST, Trek SDK will need to register ViewController when request VAST ads from Google IMA. This ViewController should be the same ViewController that displays the video ads!
-
-  EX:
-
-  A viewController requests ads, A viewController displays ads (o)
-
-  A viewController requests ads, B viewController displays ads (x)
 
 ---
 

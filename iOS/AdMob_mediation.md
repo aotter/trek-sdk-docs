@@ -30,9 +30,9 @@ If you want to test, please use the test key & adPlace，see the below
 
 - CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
-- adPlace: `native`
+- Ad Place UUID: `bc47b614-7b24-4eb1-aae2-65e8de8e96de`
 
-<img width="853" alt="AdmMob CustomEvent_Native" src="https://user-images.githubusercontent.com/46350143/120260429-79582680-c2c8-11eb-91a9-d16571be9895.png">
+<img width="853" alt="Admob_native" src="https://user-images.githubusercontent.com/46350143/121989343-91529e80-cdce-11eb-9b43-8403a0b90075.png">
 
 
 
@@ -48,11 +48,23 @@ If you want to test, please use the test key & adPlace，see the below
 
 - CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
-- adPlace: `suprad`
+- Ad Place UUID: `adcb5212-0453-4594-932a-104be11e521a`
 
-<img width="853" alt="AdmMob CustomEvent_SuprAd" src="https://user-images.githubusercontent.com/46350143/120261477-8fff7d00-c2ca-11eb-9961-db8b6aca3093.png">
+<img width="853" alt="Admon_suprad" src="https://user-images.githubusercontent.com/46350143/121989347-91eb3500-cdce-11eb-9bad-405ba9c1839b.png">
 
 
+
+##### Note:
+
+Please **use your own** Client ID and Secret as well as UUID for production environment. Once you finishing this setting, you can switch **production / test mode** by changing **your client id and test client id.**
+
+- CLIENT_ID : "YOUR CLIENT ID"
+
+- CLIENT_SECRET : "YOUR CLIENT SECRET "
+
+- Ad Place UUID: "YOUR ADPLACE UUID"
+
+  
 
 ## Step 3. Install AdMob Mediation library in you project
 
@@ -63,7 +75,7 @@ The AdMob Mediation file sdk is "TrekSDKAdMobMediationObjc"，please follow the 
 **if you install GoogleMobileAds version 8 and above**
 
 ```objective-c
-pod 'AotterTrek-iOS-SDK','3.5.9'
+pod 'AotterTrek-iOS-SDK','3.6.0'
 pod 'Google-Mobile-Ads-SDK','8.2.0'
 pod 'TrekSDKAdMobMediationObjc','1.0.2' // Only support GoogleMobileAds version 8 and above
 ```
@@ -71,7 +83,7 @@ pod 'TrekSDKAdMobMediationObjc','1.0.2' // Only support GoogleMobileAds version 
 **if you install GoogleMobileAds version 7 and below**
 
 ```objective-c
-pod 'AotterTrek-iOS-SDK','3.5.9'
+pod 'AotterTrek-iOS-SDK','3.6.0'
 pod 'Google-Mobile-Ads-SDK','7.69.0'
 pod 'TrekSDKAdMobMediationObjc','1.0.1' // Only support GoogleMobileAds version 7 and below
 ```

@@ -12,7 +12,7 @@
 1. In .podfile
    ```
    //Podfile
-   pod 'AotterTrek-iOS-SDK', '3.5.9'
+   pod 'AotterTrek-iOS-SDK', '3.6.0'
    ```
    
    Ref: [The Podfile](https://guides.cocoapods.org/using/the-podfile.html)

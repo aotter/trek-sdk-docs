@@ -12,11 +12,19 @@ Enter the slot management of [Application List](https://trek.aotter.net/publishe
 
 ## 2. create SuprAd object
 
-If you want to test, please use the test key & adPlace，see the below
+For the publisher who use AotterTrek SDK for the first time and didn't get the full access of ad slot management, we provide the test key & ad place UUID. Checkout the value below.
 
 - CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
-- adPlace: `banner`
+- Ad Place UUID: `669bad6a-27ec-487a-a583-7b5305732ff7`
+
+##### Note:
+
+Please **use your own** Client ID and Secret as well as UUID for production environment. Once you finishing this setting, you can switch **production / test mode** by changing **your client id and test client id.**
+
+- CLIENT_ID : "YOUR CLIENT ID"
+- CLIENT_SECRET : "YOUR CLIENT SECRET "
+- Ad Place UUID: "YOUR ADPLACE UUID"
 
 ```objective-c
 // .m
@@ -142,16 +150,4 @@ If you want to test, please use the test key & adPlace，see the below
 ```
 
 Github: [Banner Sample](https://github.com/aotter/AotterTrek-iOS-SDK/blob/master/AotterTrekSample/ViewController/DemoBannerAdViewController/DemoBannerAdViewController.m)
-
-
-
-## Note :  
-
-- Supr.Ad including video ad advertising, which is using VAST technology provided by the Google IMA SDK. In the implementation of VAST, Trek SDK will need to register ViewController when request VAST ads from Google IMA. This ViewController should be the same ViewController that displays the video ads!
-
-  EX:
-
-  A viewController requests ads, A viewController displays ads (o)
-
-  A viewController requests ads, B viewController displays ads (x)
 

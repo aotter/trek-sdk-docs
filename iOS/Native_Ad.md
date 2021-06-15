@@ -16,7 +16,15 @@ If you want to test, please use the test key & adPlace，see the below
 
 - CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
-- adPlace: `native`
+- Ad Place UUID: `bc47b614-7b24-4eb1-aae2-65e8de8e96de`
+
+##### Note:
+
+Please **use your own** Client ID and Secret as well as UUID for production environment. Once you finishing this setting, you can switch **production / test mode** by changing **your client id and test client id.**
+
+- CLIENT_ID : "YOUR CLIENT ID"
+- CLIENT_SECRET : "YOUR CLIENT SECRET "
+- Ad Place UUID: "YOUR ADPLACE UUID"
 
 ```objective-c
  //initial ad with place and category
