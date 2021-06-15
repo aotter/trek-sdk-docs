@@ -26,7 +26,7 @@ We provide the test key & secret. Checkout the value below.
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
 - Ad Place UUID: "YOUR ADPLACE UUID"
 
-<img width="862" alt="Admob_banner" src="https://user-images.githubusercontent.com/46350143/121989338-8d268100-cdce-11eb-9908-5d6247fe2bdf.png">
+<img width="862" alt="Admob_banner_noTestUUID" src="https://user-images.githubusercontent.com/46350143/122003427-a8e95180-cde5-11eb-8f93-da789d4e9525.png">
 
 ##### Note:
 

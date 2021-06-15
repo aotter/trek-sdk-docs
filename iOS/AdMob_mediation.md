@@ -32,7 +32,7 @@ We provide the test key & secret. Checkout the value below.
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
 - Ad Place UUID: "YOUR ADPLACE UUID"
 
-<img width="853" alt="Admob_native" src="https://user-images.githubusercontent.com/46350143/121989343-91529e80-cdce-11eb-9b43-8403a0b90075.png">
+<img width="853" alt="Admob_native_noTestUUID" src="https://user-images.githubusercontent.com/46350143/122003417-a4249d80-cde5-11eb-8696-3055593b6c1a.png">
 
 
 
@@ -50,7 +50,7 @@ We provide the test key & secret. Checkout the value below.
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
 - Ad Place UUID: "YOUR ADPLACE UUID"
 
-<img width="853" alt="Admon_suprad" src="https://user-images.githubusercontent.com/46350143/121989347-91eb3500-cdce-11eb-9bad-405ba9c1839b.png">
+<img width="853" alt="Admon_suprad_noTestUUID" src="https://user-images.githubusercontent.com/46350143/122003425-a850bb00-cde5-11eb-9b93-089550ce2857.png">
 
 
 
