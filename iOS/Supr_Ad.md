@@ -16,9 +16,11 @@ If you want to test, please use the test key & adPlace，see the below
 
 - CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
-- Ad Place UUID: `adcb5212-0453-4594-932a-104be11e521a`
+- Ad Place UUID: "YOUR ADPLACE UUID"
 
 ##### Note:
+
+For the publisher who use AotterTrek SDK for the first time and didn't get the full access of ad slot management, please contact Aseal representative or [E-mail to us](https://aseal.in/contactus).
 
 Please **use your own** Client ID and Secret as well as UUID for production environment. Once you finishing this setting, you can switch **production / test mode** by changing **your client id and test client id.**
 
@@ -27,7 +29,8 @@ Please **use your own** Client ID and Secret as well as UUID for production envi
 - Ad Place UUID: "YOUR ADPLACE UUID"
 
 ```objective-c
-self.suprAd = [[TKAdSuprAd alloc] initWithPlace:@"suprad" category:@""];
+// Replace the value in initWithPlace to your own UUID
+self.suprAd = [[TKAdSuprAd alloc] initWithPlace:@"YOUR UUID" category:@""];
 self.suprAd.delegate = self;
 
 //register view controller for presenting

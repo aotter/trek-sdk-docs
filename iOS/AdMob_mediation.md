@@ -22,15 +22,15 @@ If you have **Native Ad** needs, please follow the instructions implement
 
 #### Class Name pleae enter: AotterTrekGADCustomEventNativeAd
 
-#### Parameter:{"adType":"**nativeAd**", "adPlace":"<your ad place>"}
+#### Parameter:{"adType":"**nativeAd**", "adPlace":"<your ad place UUID>"}
 
 The **adType** please fill in **nativeAd**，the **adPlace** please fill in your "**AotterTrek NativeAd adPlace**" .
 
-If you want to test, please use the test key & adPlace，see the below
+We provide the test key & secret. Checkout the value below.
 
 - CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
-- Ad Place UUID: `bc47b614-7b24-4eb1-aae2-65e8de8e96de`
+- Ad Place UUID: "YOUR ADPLACE UUID"
 
 <img width="853" alt="Admob_native" src="https://user-images.githubusercontent.com/46350143/121989343-91529e80-cdce-11eb-9b43-8403a0b90075.png">
 
@@ -44,17 +44,19 @@ If you have **SuprAd** needs, please follow the instructions implement
 
 The **adType** please fill in **suprAd**，the **adPlace** please fill in your "**AotterTrek SuprAd adPlace**" .
 
-If you want to test, please use the test key & adPlace，see the below
+We provide the test key & secret. Checkout the value below.
 
 - CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
-- Ad Place UUID: `adcb5212-0453-4594-932a-104be11e521a`
+- Ad Place UUID: "YOUR ADPLACE UUID"
 
 <img width="853" alt="Admon_suprad" src="https://user-images.githubusercontent.com/46350143/121989347-91eb3500-cdce-11eb-9bad-405ba9c1839b.png">
 
 
 
 ##### Note:
+
+For the publisher who use AotterTrek SDK for the first time and didn't get the full access of ad slot management, please contact Aseal representative or [E-mail to us](https://aseal.in/contactus).
 
 Please **use your own** Client ID and Secret as well as UUID for production environment. Once you finishing this setting, you can switch **production / test mode** by changing **your client id and test client id.**
 
@@ -109,8 +111,8 @@ File: AppDelegate.m
     
     [[GADMobileAds sharedInstance] startWithCompletionHandler:nil];
     
-    [[AotterTrek sharedAPI] initTrekServiceWithClientId:@"21tgwWwuzFYiD4ko5Klr"
-                                                   secret:@"fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44"];
+    [[AotterTrek sharedAPI] initTrekServiceWithClientId:@"Your Client ID"
+                                                   secret:@"Your secret"];
     
     // Open Log
     //[[AotterTrek sharedAPI] performSelector:@selector(enableLoggerLevelDevDetail)];

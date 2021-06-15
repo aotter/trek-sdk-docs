@@ -14,15 +14,17 @@ Enter the slot management of [Application List](https://trek.aotter.net/publishe
 
 #### Class Name pleae enter: AotterTrekGADCustomEventBannerAd
 
-#### Parameter:{"adType":"**suprAd**", "adPlace":"<your ad place>"}
+#### Parameter:{"adType":"**suprAd**", "adPlace":"<your ad place UUID>"}
 
 The **adType** please fill in **suprAd**，the **adPlace** please fill in your "**AotterTrek Banner adPlace**" .
 
-If you want to test, please use the test key & adPlace，see the below
+For the publisher who use AotterTrek SDK for the first time and didn't get the full access of ad slot management, please contact Aseal representative or [E-mail to us](https://aseal.in/contactus).
+
+We provide the test key & secret. Checkout the value below.
 
 - CLIENT_ID : `21tgwWwuzFYiD4ko5Klr`
 - CLIENT_SECRET : `fD8P20gzWYrlbuwWklRkicYcNwlWZSZwV+iHj3TzGSzzyfgTWmVR5trs5F1Dp+x9tX2jxq44`
-- Ad Place UUID: `669bad6a-27ec-487a-a583-7b5305732ff7`
+- Ad Place UUID: "YOUR ADPLACE UUID"
 
 <img width="862" alt="Admob_banner" src="https://user-images.githubusercontent.com/46350143/121989338-8d268100-cdce-11eb-9908-5d6247fe2bdf.png">
 
