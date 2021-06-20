@@ -3,10 +3,10 @@
 ## 1. add mediation file to your project
 
 Support Mopub SDK 5.9.0 and below:
-download mediation-files [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.6.0/MoPub.Mediation_5.9.0.zip)
+download mediation-files [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.6.1/MoPub.Mediation_5.9.0.zip)
 
 Support Mopub SDK 5.10.0 and above: 
-download mediation-files  [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.6.0/MoPub.Mediation_5.10.0.zip)
+download mediation-files  [here](https://github.com/aotter/AotterTrek-iOS-SDK/releases/download/3.6.1/MoPub.Mediation_5.10.0.zip)
 
    - AotterTrekNativeAdapater
 
