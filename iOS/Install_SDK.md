@@ -10,9 +10,9 @@
 ## Option 1. through Cocoapods
 
 1. In .podfile
-   ```
+   ```objective-c
    //Podfile
-   pod 'AotterTrek-iOS-SDK', '3.6.1'
+   pod 'AotterTrek-iOS-SDK', '3.6.2'
    ```
    
    Ref: [The Podfile](https://guides.cocoapods.org/using/the-podfile.html)
