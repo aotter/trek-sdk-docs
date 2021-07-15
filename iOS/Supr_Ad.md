@@ -75,7 +75,11 @@ self.suprAd.delegate = self;
 
 	NSString *title = adData[kTKAdTitleKey];
 	NSString *contextText = adData[kTKAdTextKey];
-	NSDictionary *images = adData[kTKAdImgsKey];
+  
+	// Ｇet image string
+  NSString *imageIcon = adData[kTKAdImage_iconKey];       //82x82
+  NSString *imageIconHd = adData[kTKAdImage_icon_hdKey];  //300x300
+  NSString *img_main = adData[kTKAdImage_mainKey];        //1200x628
 }
 ```
 
@@ -86,21 +90,22 @@ loadAd' right after regsiters, but it would take some time to show vidoe.
 ```
 
 
-### adData
+### adData 
 
-| Variable       | Type   | description                            |
-| -------------- | ------ | -------------------------------------- |
-| adType         | String |                                        |
-| uuid           | String |                                        |
-| title          | String |                                        |
-| text           | String |                                        |
-| advertiserName | String |                                        |
-| img_icon       | String | 82x82                                  |
-| img_icon_hd    | String | 300x300                                |
-| img_main       | String | 1200x628                               |
-| imgs           | Map    | custom images {label,src,width,height} |
+| Variable       | Type   | description     |
+| -------------- | ------ | --------------- |
+| adType         | String | Ex: "SUPR_AD"   |
+| callToAction   | String | Ex: "了解詳情"  |
+| category       | String | Ex: "news"      |
+| sponsor        | String | Sponsor         |
+| advertiserName | String | Advertiser name |
+| title          | String | Ad headline     |
+| text           | String | Ad text         |
+| img_icon       | String | 82x82           |
+| img_icon_hd    | String | 300x300         |
+| img_main       | String | 1200x628        |
 
- 
+
 
 ## 5. Ad load completed, the ad is ready to show on screen
 

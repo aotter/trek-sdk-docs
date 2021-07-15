@@ -56,23 +56,30 @@ Please **use your own** Client ID and Secret as well as UUID for production envi
 
    //se Action button
    [self.myAdNative registerCallToActionButton:self.myButton];
+  
+    // get image string
+   	NSString *imageIcon = adData[kTKAdImage_iconKey];       //82x82
+    NSString *imageIconHd = adData[kTKAdImage_icon_hdKey];  //300x300
+    NSString *img_main = adData[kTKAdImage_mainKey];        //1200x628
 }
 ```
 
 #### adData
 
-| Variable       | Type   | description                            |
-| -------------- | ------ | -------------------------------------- |
-| adType         | String |                                        |
-| uuid           | String |                                        |
-| title          | String |                                        |
-| sponser          | String |                                        |
-| text           | String |                                        |
-| advertiserName | String |                                        |
-| img_icon       | String | 82x82                                  |
-| img_icon_hd    | String | 300x300                                |
-| img_main       | String | 1200x628                              |
-| imgs           | Map    | custom images {label,src,width,height} |
+| Variable       | Type   | description     |
+| -------------- | ------ | --------------- |
+| adType         | String | Ex: " NATIVE"   |
+| callToAction   | String | Ex: "了解詳情"  |
+| category       | String | Ex: "news"      |
+| sponsor        | String | Sponsor         |
+| advertiserName | String | Advertiser name |
+| title          | String | Ad headline     |
+| text           | String | Ad text         |
+| img_icon       | String | 82x82           |
+| img_icon_hd    | String | 300x300         |
+| img_main       | String | 1200x628        |
+
+
 
 ## 4. ad fail delegates
 
