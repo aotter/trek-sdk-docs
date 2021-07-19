@@ -46,13 +46,19 @@ self.suprAd.delegate = self;
 
 
 
-## 4. received Ad datat with prefered ad size, register for adView and TKMediaView
+## 4. received Ad data with prefered ad size, register for adView and TKMediaView
 
 ```objective-c
 -(void)TKAdSuprAd:(TKAdSuprAd *)suprAd didReceivedAdWithAdData:(NSDictionary *)adData preferedMediaViewSize:(CGSize)size isVideoAd{
 	if(isVideoAd){
    		//when this suprAd is video type.
 	} 
+  
+  // Get ad data parameter
+  NSString *advertiserName = adData[@"advertiserName"];
+	NSString *title = adData[@"title"];
+	NSString *contextText = adData[@"text"];
+  NSString *callToAction = adData[@"callToAction"];
 
 	//TKMediaView: the view for showing SuprAd's Media
   //It is recommended to create the size of the view based on ad size.
@@ -72,14 +78,6 @@ self.suprAd.delegate = self;
 
 	//prefered size for the ad
 	self.myAdSize = size;
-
-	NSString *title = adData[kTKAdTitleKey];
-	NSString *contextText = adData[kTKAdTextKey];
-  
-	// Ｇet image string
-  NSString *imageIcon = adData[kTKAdImage_iconKey];       //82x82
-  NSString *imageIconHd = adData[kTKAdImage_icon_hdKey];  //300x300
-  NSString *img_main = adData[kTKAdImage_mainKey];        //1200x628
 }
 ```
 

@@ -47,6 +47,17 @@ Please **use your own** Client ID and Secret as well as UUID for production envi
 
 ```objective-c
 -(void)TKAdNative:(TKAdNative *)ad didReceivedAdWithData:(NSDictionary *)adData{
+  
+    // Get ad data parameter
+  	NSString *advertiserName = adData[@"advertiserName"];
+		NSString *title = adData[@"title"];
+		NSString *text = adData[@"text"];
+  	NSString *imageIcon = adData[@"img_icon"];       //82x82
+    NSString *imageIconHd = adData[@"img_icon_hd"];  //300x300
+    NSString *imgMain = adData[@"img_main"];         //1200x628
+    NSString *callToAction = adData[@"callToAction"];
+    NSString *sponsor = adData[@"sponser"];
+  
     //register ad view.
     [self.myAdView registerAdView:self.myAdView];
 
@@ -54,13 +65,8 @@ Please **use your own** Client ID and Secret as well as UUID for production envi
     NSDictionary *adData = ad.AdData;
        //{render views...}
 
-   //se Action button
+   //set Action button
    [self.myAdNative registerCallToActionButton:self.myButton];
-  
-    // get image string
-   	NSString *imageIcon = adData[kTKAdImage_iconKey];       //82x82
-    NSString *imageIconHd = adData[kTKAdImage_icon_hdKey];  //300x300
-    NSString *img_main = adData[kTKAdImage_mainKey];        //1200x628
 }
 ```
 
