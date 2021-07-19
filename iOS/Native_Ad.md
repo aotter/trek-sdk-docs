@@ -66,18 +66,16 @@ Please **use your own** Client ID and Secret as well as UUID for production envi
 
 #### adData
 
-| Variable       | Type   | description     |
-| -------------- | ------ | --------------- |
-| adType         | String | Ex: " NATIVE"   |
-| callToAction   | String | Ex: "了解詳情"  |
-| category       | String | Ex: "news"      |
-| sponsor        | String | Sponsor         |
-| advertiserName | String | Advertiser name |
-| title          | String | Ad headline     |
-| text           | String | Ad text         |
-| img_icon       | String | 82x82           |
-| img_icon_hd    | String | 300x300         |
-| img_main       | String | 1200x628        |
+| Variable       | Type   | description      | Always have value  | Required to be displayed |
+| -------------- | ------ | ---------------- | ------------------ | ------------------------ |
+| advertiserName | String | Advertiser name  | Yes                | Recommended              |
+| title          | String | Ad headline      | Yes                | Required                 |
+| text           | String | Ad text          | No, could be empty | Recommended              |
+| img_main       | String | Size:1200x628    | Yes                | Recommended              |
+| img_icon       | String | Size:82x82       | Yes                | Recommended              |
+| img_icon_hd    | String | Size:300x300     | Yes                | Recommended              |
+| callToAction   | String | Ex: `"了解詳情"` | Yes                | Recommended              |
+| sponser        | String | Sponsor          | Yes                | Required                 |
 
 
 

@@ -92,18 +92,12 @@ loadAd' right after regsiters, but it would take some time to show vidoe.
 
 ### adData 
 
-| Variable       | Type   | description     |
-| -------------- | ------ | --------------- |
-| adType         | String | Ex: "SUPR_AD"   |
-| callToAction   | String | Ex: "了解詳情"  |
-| category       | String | Ex: "news"      |
-| sponsor        | String | Sponsor         |
-| advertiserName | String | Advertiser name |
-| title          | String | Ad headline     |
-| text           | String | Ad text         |
-| img_icon       | String | 82x82           |
-| img_icon_hd    | String | 300x300         |
-| img_main       | String | 1200x628        |
+| Variable       | Type   | description      | Always have value  | Required to be displayed |
+| -------------- | ------ | ---------------- | ------------------ | ------------------------ |
+| advertiserName | String | Advertiser name  | Yes                | Recommended              |
+| title          | String | Ad headline      | Yes                | Recommended              |
+| text           | String | Ad text          | No, could be empty | Recommended              |
+| callToAction   | String | Ex: `"了解詳情"` | No, could be empty | Recommended              |
 
 
 
