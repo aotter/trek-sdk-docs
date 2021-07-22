@@ -3,6 +3,8 @@ name: check-if-container-exists
 on:
   push:
     branches: [azure-test]
+  
+  workflow_dispatch:
 
 
 jobs:
