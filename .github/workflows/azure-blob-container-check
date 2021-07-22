@@ -4,8 +4,6 @@ on:
   push:
     branches: [azure-test]
 
-env:
-  BUILD_COMMAND: npx morphic
 
 jobs:
   build:
