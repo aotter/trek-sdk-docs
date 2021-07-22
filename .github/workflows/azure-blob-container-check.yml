@@ -21,4 +21,4 @@ jobs:
         uses: azure/cli@v1.0.0
         with:
           inlineScript: |
-           az storage container exists --account-name aottergeneral --sas-token ${{ secrets.AZURE_STORAGE_SAS_TOKEN }} --name 
+           az storage container exists --name  --account-name aottergeneral --sas-token ${{ secrets.AZURE_STORAGE_SAS_TOKEN }} 
