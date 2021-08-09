@@ -45,20 +45,20 @@ The AdMob Mediation file sdk is "TrekSDKAdMobMediationObjc"，please follow the 
 **if you install GoogleMobileAds version 8 and above**
 
 ```objective-c
-pod 'AotterTrek-iOS-SDK','3.5.9'
-pod 'Google-Mobile-Ads-SDK','8.2.0'
-pod 'TrekSDKAdMobMediationObjc','1.0.2' // Only support GoogleMobileAds version 8 and above
+pod 'AotterTrek-iOS-SDK','3.6.2'
+pod 'Google-Mobile-Ads-SDK','8.8.0'
+pod 'TrekSDKAdMobMediationObjc','1.0.4' // Only support GoogleMobileAds version 8 and above
 ```
 
 **if you install GoogleMobileAds version 7 and below**
 
 ```objective-c
-pod 'AotterTrek-iOS-SDK','3.5.9'
+pod 'AotterTrek-iOS-SDK','3.6.2'
 pod 'Google-Mobile-Ads-SDK','7.69.0'
-pod 'TrekSDKAdMobMediationObjc','1.0.1' // Only support GoogleMobileAds version 7 and below
+pod 'TrekSDKAdMobMediationObjc','1.0.3' // Only support GoogleMobileAds version 7 and below
 ```
 
-
+TrekSDKAdMobMediationObjc [version](https://github.com/aotter/aotter-trek-admob-mediation-public-ios-objc/blob/master_admob_mediation_v8/README.md)
 
 ## Step 4. render Google AdMob Banner ads
 
