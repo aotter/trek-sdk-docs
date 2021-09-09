@@ -77,17 +77,17 @@ The AdMob Mediation file sdk is "TrekSDKAdMobMediationObjc"，please follow the 
 **if you install GoogleMobileAds version 8 and above**
 
 ```objective-c
-pod 'AotterTrek-iOS-SDK','3.6.2'
+pod 'AotterTrek-iOS-SDK','3.6.3'
 pod 'Google-Mobile-Ads-SDK','8.8.0'
-pod 'TrekSDKAdMobMediationObjc','1.0.4' // Only support GoogleMobileAds version 8 and above
+pod 'TrekSDKAdMobMediationObjc','1.0.6' // Only support GoogleMobileAds version 8 and above
 ```
 
 **if you install GoogleMobileAds version 7 and below**
 
 ```objective-c
-pod 'AotterTrek-iOS-SDK','3.6.2'
+pod 'AotterTrek-iOS-SDK','3.6.3'
 pod 'Google-Mobile-Ads-SDK','7.69.0'
-pod 'TrekSDKAdMobMediationObjc','1.0.3' // Only support GoogleMobileAds version 7 and below
+pod 'TrekSDKAdMobMediationObjc','1.0.5' // Only support GoogleMobileAds version 7 and below
 ```
 
 TrekSDKAdMobMediationObjc [version](https://github.com/aotter/aotter-trek-admob-mediation-public-ios-objc/blob/master_admob_mediation_v8/README.md)
@@ -177,6 +177,12 @@ File: TrekNativeAdTableViewCell.m
     NSArray *nibObjects =
     [[NSBundle mainBundle] loadNibNamed:@"UnifiedNativeAdView" owner:nil options:nil];
     [self setAdView:[nibObjects firstObject]];
+  
+  	//have other needs
+		//NSString *img_icon = nativeAd.extraAssets[kTKAdImage_iconKey]; 				//82x82
+    //NSString *img_icon_hd = nativeAd.extraAssets[kTKAdImage_icon_hdKey];	//300x300
+    //NSString *img_main = nativeAd.extraAssets[kTKAdImage_mainKey];				//1200x628
+    //NSString *sponser = nativeAd.extraAssets[kTKAdSponser];
 
     ((UIImageView *)self.nativeAdView.iconView).image = nativeAd.icon.image;
     ((UILabel *)self.nativeAdView.headlineView).text = nativeAd.headline;
