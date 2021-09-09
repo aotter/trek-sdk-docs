@@ -198,9 +198,12 @@ download mediation-files  [here](https://github.com/aotter/AotterTrek-iOS-SDK/re
     
 		NSLog(@"[RenderingView TableViewCell for MopubNativeAd] layoutCustomAssetsWithProperties: %@", 		customProperties);
     
+  	//NSString *callToActionString = customProperties[@"ctatext"];	
+    //NSString *iconImage = customProperties[@"img_icon"];        	// 82x82
+  	//NSString *mainImage = customProperties[@"mainimage"];       	// 1200x628
     NSString *titleString = customProperties[@"title"];
     NSString *textString = customProperties[@"text"];
-    NSString *iconImage = customProperties[@"iconimage"];
+    NSString *iconHDImage  = customProperties[@"iconimage"];      	// 300x300
     NSString *advertiserName = customProperties[@"advertiserName"];
     NSString *sponsored = customProperties[@"sponser"];
     
@@ -213,7 +216,7 @@ download mediation-files  [here](https://github.com/aotter/AotterTrek-iOS-SDK/re
         self.labelInfo.text = [NSString stringWithFormat:@"%@",sponsored];
     }
     
-    [imageLoader loadImageForURL:[NSURL URLWithString:iconImage] intoImageView:self.iconImageView];
+    [imageLoader loadImageForURL:[NSURL URLWithString:iconHDImage] intoImageView:self.iconImageView];
     
 }
 
@@ -332,7 +335,7 @@ download mediation-files  [here](https://github.com/aotter/AotterTrek-iOS-SDK/re
 
     MPNativeAdRequestTargeting *targeting = [MPNativeAdRequestTargeting targeting];
     targeting.desiredAssets = [NSSet setWithObjects:kAdTitleKey, kAdTextKey, kAdMainImageKey, kAdIconImageKey, kAdCTATextKey, nil];
-  	targeting.localExtras = @{@"ad category": @"some category Name"};
+  	targeting.localExtras = @{@"category": @"some category Name"};
     
     _adRequest.targeting = targeting;
   
