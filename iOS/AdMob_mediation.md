@@ -400,7 +400,12 @@ static NSInteger googleMediationSuprAdPosition = 6;
 }
 
 - (void)adLoaderLoadRequest {
-    [self.adLoader loadRequest:[GADRequest request]];
+    GADRequest *request = [GADRequest request];
+    GADCustomEventExtras *extra = [[GADCustomEventExtras alloc] init];
+  	// The key please fill in "category"
+  	// YOU_CATEGORY like "news"、"movie"
+    [extra setExtras:@{@"category":@"YOUR_CATEGORY"} forLabel:@"AotterTrekGADCustomEventNativeAd"];
+    [request registerAdNetworkExtras:extra];
 }
 
 #pragma mark - UITableViewDataSource
@@ -562,6 +567,27 @@ static NSInteger googleMediationSuprAdPosition = 6;
 
 @end
 ```
+
+
+
+## Note:
+
+When requesting ads, the label parameter needs to correspond to the label set in the AdMob dashboard.
+
+```objective-c
+- (void)adLoaderLoadRequest {
+		.
+    .
+    // The label parameter please see the picture below
+		[extra setExtras:@{@"category":@"YOUR_CATEGORY"} forLabel:@"AotterTrekGADCustomEventNativeAd"];
+  	.
+    .
+}
+```
+
+<img width="1192" alt="截圖 2021-09-09 下午2 14 46" src="https://user-images.githubusercontent.com/46350143/132634590-ddef116f-0b74-4877-a218-f9c232a28045.png">
+
+<img width="464" alt="截圖 2021-09-09 下午2 15 09" src="https://user-images.githubusercontent.com/46350143/132634585-ad98552e-3239-4f4d-abc4-842163179328.png">
 
 # Step 5. Additional Method for SuprAd (AdScrolled)
 
