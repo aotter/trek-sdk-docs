@@ -119,7 +119,20 @@ static NSString *const BannerAdUnit = @"Your AdMob banner ad unit";
     _gadBannerView.delegate = self;
     _gadBannerView.rootViewController = self;
     _gadBannerView.adUnitID = BannerAdUnit;
-    [_gadBannerView loadRequest:[GADRequest request]];
+    
+    [self bannerLoadRequest];
+}
+
+-(void)bannerLoadRequest {
+    GADRequest *request = [GADRequest request];
+    GADCustomEventExtras *extra = [[GADCustomEventExtras alloc] init];
+  
+  	// The key please fill in "category"
+  	// YOU_CATEGORY like "news"、"movie"
+    [extra setExtras:@{@"category":@"YOUR_CATEGORY"} forLabel:@"AotterTrekGADCustomEventBannerAd"];
+    [request registerAdNetworkExtras:extra];
+    
+    [_gadBannerView loadRequest:request];
 }
 
 - (void)setupBannerViewUI:(GADBannerView *)bannerView {
