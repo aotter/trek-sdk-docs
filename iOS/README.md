@@ -1,5 +1,7 @@
 # IOS
 
+- 2021/10/05 relase `3.6.4`
+	- update OM SDK version
 - 2021/07/05 release `3.6.2`
   - Adjust video ad behavior interact with keyboard.
 - 2021/06/21 release `3.6.1`
