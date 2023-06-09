@@ -2,4 +2,4 @@
 Hello , dear developers.
 Aotter Trek has migrated doc. 
 
-Please refer the **[new aotter trek doc](https://trek.gitbook.io/aottertrek-sdk-doc/)**
+Please refer the **[new aotter trek doc](https://aotter.gitbook.io/aotter-trek/)**
